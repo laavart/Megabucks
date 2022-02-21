@@ -12,18 +12,14 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, DBInvalidException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
 
-        try {
-            Database db = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
-        } catch (DBInvalidException e) {
-            e.printStackTrace();
-        }
+        Database db = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
     }
 
     public static void main(String[] args) {
