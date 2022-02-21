@@ -3,12 +3,16 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="464.0" prefWidth="442.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="com.psloba.megabucks.HelloController">
+<VBox alignment="CENTER" prefHeight="539.0" prefWidth="784.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.psloba.megabucks.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="welcomeText" />
+    <Label fx:id="welcomeText" alignment="CENTER" prefHeight="75.0" prefWidth="365.0" text="MegaBucks">
+      <font>
+         <Font name="System Bold" size="52.0" />
+      </font></Label>
     <Button onAction="#onHelloButtonClick" text="Hello!" />
 </VBox>
