@@ -139,9 +139,9 @@ public class Database {
     }
 
     public static Database connect(Source source, String hostname, String port, String database, String user, String token) throws DBInvalidException {
-        try {
-            if(CheckForPort.contains(source)) throw new DBInvalidException();
-            else {
+        if(CheckForPort.contains(source)) throw new DBInvalidException();
+        else {
+            try {
                 Class.forName(source.getDriver());
                 Database db = new Database();
                 db.source = source;
@@ -154,18 +154,18 @@ public class Database {
                 initialize(db);
 
                 return db;
-            }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Connection Failed !");
-            return null;
+            } catch (ClassNotFoundException | SQLException e) {
+                System.out.println("Connection Failed !");
+                return null;
+            }
         }
     }
 
-    public static Database connect(Source source , String hostname, String database, String user, String token) throws DBInvalidException {
-        try {
-            if(!CheckForPort.contains(source)) throw new DBInvalidException();
-            else {
+    public static Database connect(Source source, String hostname, String database, String user, String token) throws DBInvalidException {
+        if(!CheckForPort.contains(source)) throw new DBInvalidException();
+        else {
+            try {
                 Class.forName(source.getDriver());
                 Database db = new Database();
                 db.source = source;
@@ -178,11 +178,11 @@ public class Database {
                 initialize(db);
 
                 return db;
-            }
 
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Connection Failed !");
-            return null;
+            } catch (ClassNotFoundException | SQLException e) {
+                System.out.println("Connection Failed !");
+                return null;
+            }
         }
     }
 
