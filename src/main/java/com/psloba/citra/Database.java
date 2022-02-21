@@ -164,7 +164,7 @@ public class Database {
 
     public static Database connect(Source source , String hostname, String database, String user, String token) throws DBInvalidException {
         try {
-            if(CheckForPort.contains(source)) throw new DBInvalidException();
+            if(!CheckForPort.contains(source)) throw new DBInvalidException();
             else {
                 Class.forName(source.getDriver());
                 Database db = new Database();
