@@ -139,9 +139,9 @@ public class Database {
     }
 
     public static Database connect(Source source, String hostname, String port, String database, String user, String token) throws DBInvalidException {
-        if(CheckForPort.contains(source)) throw new DBInvalidException();
-        else {
-            try {
+        try {
+            if(CheckForPort.contains(source)) throw new DBInvalidException();
+            else {
                 Class.forName(source.getDriver());
                 Database db = new Database();
                 db.source = source;
@@ -154,18 +154,18 @@ public class Database {
                 initialize(db);
 
                 return db;
-
-            } catch (ClassNotFoundException | SQLException e) {
-                System.out.println("Connection Failed !");
-                return null;
             }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Connection Failed !");
+            return null;
         }
     }
 
     public static Database connect(Source source , String hostname, String database, String user, String token) throws DBInvalidException {
-        if(!CheckForPort.contains(source)) throw new DBInvalidException();
-        else {
-            try {
+        try {
+            if(CheckForPort.contains(source)) throw new DBInvalidException();
+            else {
                 Class.forName(source.getDriver());
                 Database db = new Database();
                 db.source = source;
@@ -178,11 +178,11 @@ public class Database {
                 initialize(db);
 
                 return db;
-
-            } catch (ClassNotFoundException | SQLException e) {
-                System.out.println("Connection Failed !");
-                return null;
             }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Connection Failed !");
+            return null;
         }
     }
 
@@ -372,7 +372,7 @@ public class Database {
         return null;
     }
 
-    public boolean addNewUser(Client client){
+    public int addNewUser(Client client){
         try{
             if( checkForUser(client.user().username()) != -1 )
                 System.out.println("User already Exist!");
@@ -438,7 +438,7 @@ public class Database {
                 statement.executeUpdate("commit ;");
 
                 System.out.println("User Registered!");
-                return true;
+                return id;
             }
 
         } catch (SQLException e) {
@@ -450,7 +450,7 @@ public class Database {
         } catch (SQLException ex) {
             System.out.println("Rollback Error!");
         }
-        return false;
+        return -1;
     }
 
     public boolean changePassword(String username, String code, String newToken){
