@@ -19,6 +19,7 @@ public class LogInApplication extends Application {
         stage.show();
 
         Database db = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
+
     }
 
     public static void main(String[] args) {
