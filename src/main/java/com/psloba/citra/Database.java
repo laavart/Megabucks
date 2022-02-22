@@ -325,15 +325,15 @@ public class Database {
             if(validateWithToken(username, token)){
                 ResultSet resultSet = statement.executeQuery(
                         "select Name, DOB, Email, Mobile, AddressLine1, AddressLine2, PostalCode, City, State, Country " +
-                                "from user_address, user_master, comm_master, user_address_code_postal, user_address_code_state, user_address_code_country " +
-                                "where user_address.uID = user_master.uID " +
-                                "and user_master.uID = comm_master.uID " +
-                                "and user_address.PostalCode = user_address_code_postal.pID " +
-                                "and user_address_code_postal.State = user_address_code_state.sID " +
-                                "and user_address_code_state.Country = user_address_code_country.cID " +
-                                "and Username = '" + username + "'" +
+                                "from user_master " +
+                                "join user_address on user_master.uID = user_address.uID " +
+                                "join comm_master on user_address.uID = comm_master.uID " +
+                                "join user_address_code_postal on user_address.PostalCode = user_address_code_postal.pID " +
+                                "join user_address_code_state on user_address_code_postal.State = user_address_code_state.sID " +
+                                "join user_address_code_country on user_address_code_state.Country = user_address_code_country.cID " +
+                                "where Username = '" + username + "'" +
                                 ";"
-                );
+                ); System.out.println("*");
 
                 if (resultSet.next()) {
                     User user = new User(resultSet.getString(1), resultSet.getDate(2).toLocalDate());
@@ -341,7 +341,6 @@ public class Database {
                     Address address = new Address(resultSet.getString(5), resultSet.getString(6), resultSet.getString(7), resultSet.getString(8), resultSet.getString(9), resultSet.getString(10));
 
                     return new Client(user, comm, address);
-
                 }
             }
 
@@ -349,7 +348,6 @@ public class Database {
             System.out.println("Error in Fetching Data!");
         }
 
-        System.out.println("User not found!");
         return null;
     }
 

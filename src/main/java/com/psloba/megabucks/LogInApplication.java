@@ -34,13 +34,6 @@ public class LogInApplication extends Application {
         TextField username = (TextField) fxmlLoader.getNamespace().get("username");
         PasswordField password = (PasswordField) fxmlLoader.getNamespace().get("password");
 
-        User u = new User("abc", "jkl", LocalDate.now());
-        Security t = new Security("Abcde@1234", "5678910");
-        Comm c = new Comm("abc012@mail.com", "0000000000");
-        Address a = new Address("a1", "a2", "229001", "Raebareli", "Uttar Pradesh", "India");
-        Client C = new Client(u, t, c, a);
-        int id = database.addNewUser(C);
-
         login.setOnAction(e -> {
             Client client = database.validateUser(username.getText(), password.getText());
 
