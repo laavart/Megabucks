@@ -395,7 +395,7 @@ public class Database {
 
                 int id;
                 ResultSet resultSet = statement.executeQuery("select min(rID) from reuse_master;");
-                if(resultSet.first()) id = resultSet.getInt(1);
+                if(resultSet.next()) id = resultSet.getInt(1);
                 else{
                     resultSet = statement.executeQuery("select max(uid)+1 from user_master;");
                     id = resultSet.next() ? resultSet.getInt(1) : 1;
@@ -483,7 +483,7 @@ public class Database {
                 ResultSet resultSet = statement.executeQuery(
                         "select uID from user_master where Username = '"+username+"';"
                 );
-                if(resultSet.first()){
+                if(resultSet.next()){
                     int id = resultSet.getInt(1);
 
                     statement.executeUpdate("start transaction ;");
