@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class LogInApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception{
-        FXMLLoader fxmlLoader = new FXMLLoader(LogInApplication.class.getResource("LogIn-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(LogInApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 500);
         stage.setTitle("Hello!");
         stage.setScene(scene);
