@@ -17,8 +17,8 @@ public class LogInApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(LogInApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 500);
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("MegaBucks");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
@@ -32,9 +32,13 @@ public class LogInApplication extends Application {
         PasswordField password = (PasswordField) fxmlLoader.getNamespace().get("password");
 
         login.setOnAction(e -> {
+            assert database != null;
             Client client = database.validateUser(username.getText(), password.getText());
 
-            if(client != null) System.out.println("Found!");
+            if(client != null) {
+
+                MainApplication.launch();
+            }
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Invalid Details!");
