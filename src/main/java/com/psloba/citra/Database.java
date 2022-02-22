@@ -324,7 +324,17 @@ public class Database {
         try {
             if(validateWithToken(username, token)){
                 ResultSet resultSet = statement.executeQuery(
-                        "select Name, DOB, Email, Mobile, AddressLine1, AddressLine2, PostalCode, City, State, Country " +
+                        "select " +
+                                "user_master.Name," +
+                                "user_master.DOB," +
+                                "comm_master.Email," +
+                                "comm_master.Mobile," +
+                                "user_address.AddressLine1," +
+                                "user_address.AddressLine2," +
+                                "user_address.PostalCode," +
+                                "user_address_code_postal.City," +
+                                "user_address_code_state.State," +
+                                "user_address_code_country.Country " +
                                 "from user_master " +
                                 "join user_address on user_master.uID = user_address.uID " +
                                 "join comm_master on user_address.uID = comm_master.uID " +
@@ -333,7 +343,7 @@ public class Database {
                                 "join user_address_code_country on user_address_code_state.Country = user_address_code_country.cID " +
                                 "where Username = '" + username + "'" +
                                 ";"
-                ); System.out.println("*");
+                );
 
                 if (resultSet.next()) {
                     User user = new User(resultSet.getString(1), resultSet.getDate(2).toLocalDate());
