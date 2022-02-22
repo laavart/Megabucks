@@ -9,12 +9,12 @@ import com.psloba.citra.client.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
-
-import java.time.LocalDate;
 
 public class LogInApplication extends Application {
     @Override
@@ -38,7 +38,12 @@ public class LogInApplication extends Application {
             Client client = database.validateUser(username.getText(), password.getText());
 
             if(client != null) System.out.println("Found!");
-            else System.out.println("Not Found!");
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Invalid Details!");
+                alert.setContentText("Username or Password not correct!");
+                alert.show();
+            }
         });
     }
 
