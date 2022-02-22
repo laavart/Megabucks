@@ -1,6 +1,5 @@
 package com.psloba.megabucks.Application;
 
-import com.psloba.megabucks.Application.LogInApplication;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

@@ -4,6 +4,7 @@ import com.psloba.citra.Client;
 import com.psloba.citra.Database;
 import com.psloba.citra.Source;
 
+import com.psloba.megabucks.Main;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,17 +14,17 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class LogInApplication extends Application {
     @Override
-    public void start(Stage stage) throws Exception{
+    public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LogInApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("MegaBucks");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-
-        Database database = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
 
         Button login = (Button) fxmlLoader.getNamespace().get("login");
         login.isDefaultButton();
@@ -32,10 +33,10 @@ public class LogInApplication extends Application {
         PasswordField password = (PasswordField) fxmlLoader.getNamespace().get("password");
 
         login.setOnAction(e -> {
-            assert database != null;
-            Client client = database.validateUser(username.getText(), password.getText());
+            assert Main.database != null;
+            Main.client = Main.database.validateUser(username.getText(), password.getText());
 
-            if(client != null) {
+            if(Main.client != null) {
                 MainApplication.launch();
             }
             else {
