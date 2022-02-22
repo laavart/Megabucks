@@ -4,8 +4,6 @@ import com.psloba.citra.Client;
 import com.psloba.citra.Database;
 import com.psloba.citra.Source;
 
-import com.psloba.citra.client.*;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,7 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class LogInApplication extends Application {
