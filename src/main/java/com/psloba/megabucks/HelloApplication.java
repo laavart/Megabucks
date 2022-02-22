@@ -3,17 +3,14 @@ package com.psloba.megabucks;
 import com.psloba.citra.Database;
 import com.psloba.citra.Source;
 
-import com.psloba.citra.exception.DBInvalidException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class HelloApplication extends Application {
     @Override
-    public void start(Stage stage) throws IOException, DBInvalidException {
+    public void start(Stage stage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 500);
         stage.setTitle("Hello!");
