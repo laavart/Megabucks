@@ -325,16 +325,8 @@ public class Database {
             if(validateWithToken(username, token)){
                 ResultSet resultSet = statement.executeQuery(
                         "select " +
-                                "user_master.Name," +
-                                "user_master.DOB," +
-                                "comm_master.Email," +
-                                "comm_master.Mobile," +
-                                "user_address.AddressLine1," +
-                                "user_address.AddressLine2," +
-                                "user_address.PostalCode," +
-                                "user_address_code_postal.City," +
-                                "user_address_code_state.State," +
-                                "user_address_code_country.Country " +
+                                "user_master.Name, user_master.DOB, comm_master.Email, comm_master.Mobile, user_address.AddressLine1, user_address.AddressLine2, " +
+                                "user_address.PostalCode, user_address_code_postal.City, user_address_code_state.State, user_address_code_country.Country " +
                                 "from user_master " +
                                 "join user_address on user_master.uID = user_address.uID " +
                                 "join comm_master on user_address.uID = comm_master.uID " +
