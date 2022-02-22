@@ -1,4 +1,4 @@
-package com.psloba.megabucks;
+package com.psloba.megabucks.Application;
 
 import com.psloba.citra.Client;
 import com.psloba.citra.Database;
@@ -36,7 +36,6 @@ public class LogInApplication extends Application {
             Client client = database.validateUser(username.getText(), password.getText());
 
             if(client != null) {
-
                 MainApplication.launch();
             }
             else {
@@ -46,9 +45,5 @@ public class LogInApplication extends Application {
                 alert.show();
             }
         });
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }

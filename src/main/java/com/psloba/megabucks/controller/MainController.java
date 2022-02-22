@@ -1,4 +1,4 @@
-package com.psloba.megabucks;
+package com.psloba.megabucks.controller;
 
 import javafx.fxml.FXML;
 
