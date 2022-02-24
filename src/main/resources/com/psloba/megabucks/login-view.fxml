@@ -8,9 +8,9 @@
 
 <BorderPane fx:id="window" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.psloba.megabucks.LogInController">
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <HBox alignment="CENTER">
-            <Label prefHeight="26.0" text="Username:">
+      <VBox alignment="CENTER" prefWidth="400.0" BorderPane.alignment="CENTER">
+         <HBox alignment="CENTER_LEFT">
+            <Label prefHeight="26.0" prefWidth="80.0" text="Username:">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -18,46 +18,51 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </Label>
-            <TextField fx:id="username" prefHeight="26.0" promptText="Username" HBox.hgrow="ALWAYS">
+            <TextField fx:id="username" prefHeight="26.0" prefWidth="300.0" promptText="Enter Username" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </TextField>
          </HBox>
-         <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="151.0">
-            <Label prefHeight="26.0" text="Password: ">
-               <HBox.margin>
-                  <Insets top="2.0" />
-               </HBox.margin>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </Label>
-            <VBox alignment="CENTER">
-               <children>
-                  <PasswordField fx:id="password" onKeyPressed="#onShow" prefHeight="26.0" promptText="Password">
-                     <VBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </VBox.margin>
-                  </PasswordField>
-                  <HBox>
-                     <children>
-                        <TextField fx:id="showpassword" editable="false" prefHeight="26.0" promptText="Show Password">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </TextField>
-                        <ToggleButton fx:id="show" mnemonicParsing="false" onAction="#onShow" prefHeight="26.0" text="Show">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                        </ToggleButton>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+         <HBox centerShape="false">
+            <children>
+               <Label prefHeight="26.0" prefWidth="80.0" text="Password:">
+                  <HBox.margin>
+                     <Insets top="2.0" />
+                  </HBox.margin>
+                  <padding>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  </padding>
+               </Label>
+               <VBox prefWidth="320.0">
+                  <children>
+                     <PasswordField fx:id="password" onKeyPressed="#onShow" prefHeight="26.0" prefWidth="300.0" promptText="Enter Password">
+                        <VBox.margin>
+                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </VBox.margin>
+                     </PasswordField>
+                     <HBox alignment="CENTER_RIGHT">
+                        <children>
+                           <TextField fx:id="showpassword" prefHeight="26.0" prefWidth="230.0" promptText="Password">
+                              <HBox.margin>
+                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              </HBox.margin>
+                              <font>
+                                 <Font name="System Italic" size="12.0" />
+                              </font>
+                           </TextField>
+                           <ToggleButton fx:id="show" mnemonicParsing="false" onAction="#onShow" prefWidth="60.0" text="Show">
+                              <HBox.margin>
+                                 <Insets bottom="10.0" right="10.0" top="10.0" />
+                              </HBox.margin>
+                           </ToggleButton>
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+            </children>
          </HBox>
-         <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="174.0" prefWidth="200.0">
+         <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="174.0">
             <Label fx:id="forgot" onMouseClicked="#onClickingForgot" prefHeight="26.0" text="Forgot Password?" textFill="BLUE">
                <HBox.margin>
                   <Insets />
@@ -95,23 +100,26 @@
          </font></TextArea>
    </left>
    <top>
-      <HBox alignment="BOTTOM_CENTER" prefWidth="200.0" style="-fx-background-color: Gold;" BorderPane.alignment="CENTER">
+      <HBox alignment="BOTTOM_CENTER" style="-fx-background-color: Gold;" BorderPane.alignment="CENTER">
          <effect>
             <SepiaTone />
          </effect>
-         <Label text="MegaBucks">
+         <Label prefHeight="60.0" text="MegaBucks">
             <font>
                <Font name="System Bold" size="32.0" />
             </font>
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
          </Label>
       </HBox>
    </top>
    <bottom>
-      <HBox alignment="TOP_CENTER" prefWidth="600.0" style="-fx-background-color: Gold;" BorderPane.alignment="CENTER">
+      <HBox alignment="TOP_CENTER" style="-fx-background-color: Gold;" BorderPane.alignment="CENTER">
          <effect>
             <SepiaTone />
          </effect>
-         <Label text="Label">
+         <Label prefHeight="30.0" text="Label">
             <font>
                <Font name="System Italic" size="16.0" />
             </font>
