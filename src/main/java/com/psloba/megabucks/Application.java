@@ -7,7 +7,6 @@ import com.psloba.citra.Source;
 import com.psloba.citra.exception.DBInvalidException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -32,6 +31,7 @@ public class Application extends javafx.application.Application {
     }
 
     public static void showMain(Stage stage) throws IOException{
+        stage.close();
         fxmlLoader = new FXMLLoader(Application.class.getResource("main.fxml"));
         scene = new Scene(fxmlLoader.load(), 600, 500);
         stage.setScene(scene);
@@ -40,6 +40,7 @@ public class Application extends javafx.application.Application {
     }
 
     public static void showForgot(Stage stage) throws IOException{
+        stage.close();
         fxmlLoader = new FXMLLoader(Application.class.getResource("forgot.fxml"));
         scene = new Scene(fxmlLoader.load(), 600, 500);
         stage.setScene(scene);
@@ -48,6 +49,7 @@ public class Application extends javafx.application.Application {
     }
 
     public static void showCreate(Stage stage) throws IOException{
+        stage.close();
         fxmlLoader = new FXMLLoader(Application.class.getResource("create.fxml"));
         scene = new Scene(fxmlLoader.load(), 600, 500);
         stage.setScene(scene);

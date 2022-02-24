@@ -18,35 +18,21 @@ public class LogIn {
     }
 
     @FXML
-    private void onClickingForgot() {
-        try {
-            Application.showForgot(Application.stage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void onClickingForgot() throws IOException{
+        Application.showForgot(Application.stage);
     }
 
     @FXML
-    private void onClickingCreate() {
-        try {
-            Application.showCreate(Application.stage);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void onClickingCreate() throws IOException{
+        Application.showCreate(Application.stage);
     }
 
     @FXML
-    private void onClickingLogIn() {
+    private void onClickingLogIn() throws IOException{
         assert Application.database != null;
         Application.client = Application.database.validateUser(username.getText(), password.getText());
 
-        if(Application.client != null) {
-            try {
-                Application.showMain(Application.stage);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        if(Application.client != null) Application.showMain(Application.stage);
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Details!");
