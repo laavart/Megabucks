@@ -3,8 +3,8 @@ package com.psloba.megabucks;
 import com.psloba.citra.Client;
 import com.psloba.citra.Database;
 import com.psloba.citra.Source;
+import com.psloba.citra.exception.*;
 
-import com.psloba.citra.exception.DBInvalidException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
