@@ -40,6 +40,15 @@ public class Application extends javafx.application.Application {
         stage.show();
     }
 
+    public static void showForgot(Stage stage) throws IOException{
+        stage.close();
+        fxmlLoader = new FXMLLoader(Application.class.getResource("forgot.fxml"));
+        scene = new Scene(fxmlLoader.load(), 600, 500);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+
     public static void showCreate(Stage stage) throws IOException{
         stage.close();
         fxmlLoader = new FXMLLoader(Application.class.getResource("create.fxml"));
