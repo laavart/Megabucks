@@ -5,7 +5,7 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 
-public class LogInController {
+public class LogIn {
 
     public TextField username;
     public PasswordField password;

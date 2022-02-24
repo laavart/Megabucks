@@ -23,7 +23,7 @@ public class Application extends javafx.application.Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        fxmlLoader = new FXMLLoader(Application.class.getResource("login-view.fxml"));
+        fxmlLoader = new FXMLLoader(Application.class.getResource("login.fxml"));
         scene = new Scene(fxmlLoader.load(), 600, 500);
         stage.setTitle("MegaBucks");
         stage.setScene(scene);
@@ -32,7 +32,7 @@ public class Application extends javafx.application.Application {
     }
 
     public static void showMain(Stage stage) throws IOException{
-        fxmlLoader = new FXMLLoader(Application.class.getResource("main-view.fxml"));
+        fxmlLoader = new FXMLLoader(Application.class.getResource("main.fxml"));
         scene = new Scene(fxmlLoader.load(), 600, 500);
         stage.setScene(scene);
         stage.setResizable(false);
