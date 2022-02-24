@@ -32,7 +32,17 @@ public class Application extends javafx.application.Application {
     }
 
     public static void showMain(Stage stage) throws IOException{
+        stage.close();
         fxmlLoader = new FXMLLoader(Application.class.getResource("main.fxml"));
+        scene = new Scene(fxmlLoader.load(), 600, 500);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    public static void showCreate(Stage stage) throws IOException{
+        stage.close();
+        fxmlLoader = new FXMLLoader(Application.class.getResource("create.fxml"));
         scene = new Scene(fxmlLoader.load(), 600, 500);
         stage.setScene(scene);
         stage.setResizable(false);

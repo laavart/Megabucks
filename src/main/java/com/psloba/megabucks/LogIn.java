@@ -32,10 +32,7 @@ public class LogIn {
         assert Application.database != null;
         Application.client = Application.database.validateUser(username.getText(), password.getText());
 
-        if(Application.client != null) {
-            Application.stage.close();
-            Application.showMain(Application.stage);
-        }
+        if(Application.client != null) Application.showMain(Application.stage);
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Details!");
