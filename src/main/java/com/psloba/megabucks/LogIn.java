@@ -18,17 +18,17 @@ public class LogIn {
     }
 
     @FXML
-    private void onClickingForgot() throws IOException{
+    private void onClickingForgot() {
         Application.showForgot(Application.stage);
     }
 
     @FXML
-    private void onClickingCreate() throws IOException{
+    private void onClickingCreate() {
         Application.showCreate(Application.stage);
     }
 
     @FXML
-    private void onClickingLogIn() throws IOException{
+    private void onClickingLogIn() {
         assert Application.database != null;
         Application.client = Application.database.validateUser(username.getText(), password.getText());
 
