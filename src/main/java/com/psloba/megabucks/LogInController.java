@@ -2,7 +2,8 @@ package com.psloba.megabucks;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
+
+import java.io.IOException;
 
 public class LogInController {
 
@@ -10,9 +11,6 @@ public class LogInController {
     public PasswordField password;
     public TextField showpassword;
     public ToggleButton show;
-    public Label forgot;
-    public Label create;
-    public BorderPane window;
 
     @FXML
     private void onShow(){
@@ -30,12 +28,13 @@ public class LogInController {
     }
 
     @FXML
-    private void onClickingLogIn(){
-        assert AppData.database != null;
-        AppData.client = AppData.database.validateUser(username.getText(), password.getText());
+    private void onClickingLogIn() throws IOException{
+        assert Application.database != null;
+        Application.client = Application.database.validateUser(username.getText(), password.getText());
 
-        if(AppData.client != null) {
-            System.out.println("Good!");
+        if(Application.client != null) {
+            Application.stage.close();
+            Application.showMain(Application.stage);
         }
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
