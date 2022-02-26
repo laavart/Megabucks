@@ -125,7 +125,7 @@
                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                       </HBox.margin>
                    </Label>
-                   <TextField fx:id="email" prefHeight="26.0" prefWidth="200.0" promptText="E-mail ID">
+                   <TextField fx:id="email" onKeyTyped="#checkingEmail" prefHeight="26.0" prefWidth="200.0" promptText="E-mail ID">
                       <HBox.margin>
                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                       </HBox.margin>
@@ -137,7 +137,7 @@
                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                       </HBox.margin>
                    </Label>
-                   <TextField fx:id="mobile" prefHeight="26.0" prefWidth="200.0" promptText="Mobile Number">
+                   <TextField fx:id="mobile" onKeyTyped="#checkingMobile" prefHeight="26.0" prefWidth="200.0" promptText="Mobile Number">
                       <HBox.margin>
                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                       </HBox.margin>
@@ -167,7 +167,7 @@
                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                       </HBox.margin>
                    </Label>
-                   <TextField fx:id="username" prefHeight="26.0" prefWidth="200.0" promptText="Username">
+                   <TextField fx:id="username" onKeyTyped="#settingUsername" prefHeight="26.0" prefWidth="200.0" promptText="Username">
                       <HBox.margin>
                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                       </HBox.margin>
@@ -179,21 +179,21 @@
                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                       </HBox.margin>
                    </Label>
-                   <PasswordField fx:id="password" prefHeight="26.0" prefWidth="200.0" promptText="Password">
+                   <PasswordField fx:id="password" onKeyTyped="#settingPassword" prefHeight="26.0" prefWidth="200.0" promptText="Password">
                       <HBox.margin>
                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                       </HBox.margin>
                    </PasswordField>
                 </HBox>
                 <HBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="131.0">
-                   <PasswordField fx:id="repassword" prefHeight="26.0" prefWidth="200.0" promptText="Re-enter Password">
+                   <PasswordField fx:id="repassword" onKeyTyped="#matchingPassword" prefHeight="26.0" prefWidth="200.0" promptText="Re-enter Password">
                       <HBox.margin>
                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                       </HBox.margin>
                    </PasswordField>
                 </HBox>
                 <HBox alignment="CENTER" layoutX="25.0" layoutY="25.0">
-                   <Label>
+                   <Label textFill="RED">
                       <font>
                          <Font name="System Bold Italic" size="14.0" />
                       </font>
