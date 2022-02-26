@@ -31,10 +31,10 @@ public class Create {
         String message = "E-mail ID Invalid!\n";
         if(!Pattern.compile("^(?=.{7,150})[a-zA-Z0-9+._-]+@[a-zA-Z0-9.]+$").matcher(email.getText()).matches())
             messagebox.appendText(message);
-        else if(messagebox.getText().contains(message)) {
+        else while(messagebox.getText().contains(message)) {
             int i = messagebox.getText().indexOf(message);
             int l = messagebox.getText().length();
-            messagebox.deleteText(i, i+l);
+            messagebox.deleteText(i,l);
         }
     }
 
@@ -43,10 +43,10 @@ public class Create {
         String message = "Mobile No. Invalid!\n";
         if(mobile.getText().length() != 10)
             messagebox.appendText(message);
-        else if(messagebox.getText().contains(message)) {
+        else while(messagebox.getText().contains(message)) {
             int i = messagebox.getText().indexOf(message);
             int l = messagebox.getText().length();
-            messagebox.deleteText(i, i+l);
+            messagebox.deleteText(i,l);
         }
     }
 
@@ -55,10 +55,10 @@ public class Create {
         String message = "Username Unavailable!\n";
         if(Application.database.searchUser(username.getText()))
             messagebox.appendText(message);
-        else if(messagebox.getText().contains(message)) {
+        else while(messagebox.getText().contains(message)) {
             int i = messagebox.getText().indexOf(message);
             int l = messagebox.getText().length();
-            messagebox.deleteText(i, i+l);
+            messagebox.deleteText(i,l);
         }
     }
 
@@ -67,10 +67,10 @@ public class Create {
         String message = "Password Invalid!\n";
         if(!Pattern.compile("^.*(?=.{8,128})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$").matcher(password.getText()).matches())
             messagebox.appendText(message);
-        else if(messagebox.getText().contains(message)) {
+        else while(messagebox.getText().contains(message)) {
             int i = messagebox.getText().indexOf(message);
             int l = messagebox.getText().length();
-            messagebox.deleteText(i, i+l);
+            messagebox.deleteText(i,l);
         }
     }
 
@@ -79,10 +79,10 @@ public class Create {
         String message = "Password Mismatch!\n";
         if(!Objects.equals(username.getText(), repassword.getText()))
             messagebox.appendText(message);
-        else if(messagebox.getText().contains(message)) {
+        else while(messagebox.getText().contains(message)) {
             int i = messagebox.getText().indexOf(message);
             int l = messagebox.getText().length();
-            messagebox.deleteText(i, i+l);
+            messagebox.deleteText(i,l);
         }
     }
 
@@ -91,10 +91,10 @@ public class Create {
         String message = "PassCode Invalid!\n";
         if(passcode.getText().length() != 7)
             messagebox.appendText(message);
-        else if(messagebox.getText().contains(message)) {
+        else while(messagebox.getText().contains(message)) {
             int i = messagebox.getText().indexOf(message);
             int l = messagebox.getText().length();
-            messagebox.deleteText(i, i+l);
+            messagebox.deleteText(i,l);
         }
     }
 
