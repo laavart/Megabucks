@@ -32,18 +32,6 @@ public class Application extends javafx.application.Application {
         stage.show();
     }
 
-    public static void showMain(Stage stage) {
-        stage.setScene(Scenes.get("main.fxml"));
-    }
-
-    public static void showForgot(Stage stage) {
-        stage.setScene(Scenes.get("forgot.fxml"));
-    }
-
-    public static void showCreate(Stage stage) {
-        stage.setScene(Scenes.get("create.fxml"));
-    }
-
     public static void main(String[] args) throws DBInvalidException, IOException {
         database = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
 
