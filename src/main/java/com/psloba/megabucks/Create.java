@@ -102,9 +102,11 @@ public class Create {
     @FXML
     private void retrievingLocation(){
         Address address = Application.database.getLocation(postal.getText());
-        city.setText(address.city());
-        state.setText(address.state());
-        country.setText(address.country());
+        if(address != null){
+            city.setText(address.city());
+            state.setText(address.state());
+            country.setText(address.country());
+        }
     }
 
     @FXML
@@ -137,5 +139,16 @@ public class Create {
         Address address = new Address(address1.getText(), address2.getText(), postal.getText(), city.getText(), state.getText(), country.getText());
         Application.client = new Client(user, security, comm, address);
         int id = Application.database.addNewUser(Application.client);
+        Alert alert;
+        if(id != -1) {
+            alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Accounts!");
+            alert.setContentText("Account Created!");
+        } else {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Accounts!");
+            alert.setContentText("Unable to Create Account!");
+        }
+        alert.show();
     }
 }
