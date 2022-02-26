@@ -250,13 +250,6 @@ public class Database {
         } else return resultSet.getInt(1);
     }
 
-    private String getCountry(int cID) throws SQLException {
-        ResultSet resultSet = statement.executeQuery(
-                "select Country from user_address_code_country where cID = "+cID+";"
-        );
-        return resultSet.next() ? resultSet.getString(1) : "";
-    }
-
     private int getStateCode(Address address) throws SQLException {
         int cID = getCountryCode(address);
 
@@ -280,13 +273,6 @@ public class Database {
             return sID;
 
         } else return resultSet.getInt(1);
-    }
-
-    private String getState(int sID) throws SQLException {
-        ResultSet resultSet = statement.executeQuery(
-                "select State from user_address_code_state where sID = "+sID+";"
-        );
-        return resultSet.next() ? resultSet.getString(1) : "";
     }
 
     private int getPostalCode(Address address) throws SQLException {
@@ -315,9 +301,26 @@ public class Database {
         } else return resultSet.getInt(1);
     }
 
-    private String getCity(int postal) throws SQLException {
+    //***
+    private String getCountry(int cID) throws SQLException {
         ResultSet resultSet = statement.executeQuery(
-                "select City from user_address_code_postal where PostalCode = "+postal+";"
+                "select Country from user_address_code_country where cID = "+cID+";"
+        );
+        return resultSet.next() ? resultSet.getString(1) : "";
+    }
+
+    //***
+    private String getState(int sID) throws SQLException {
+        ResultSet resultSet = statement.executeQuery(
+                "select State from user_address_code_state where sID = "+sID+";"
+        );
+        return resultSet.next() ? resultSet.getString(1) : "";
+    }
+
+
+    private String getCity(int pID) throws SQLException {
+        ResultSet resultSet = statement.executeQuery(
+                "select City from user_address_code_postal where pID = "+pID+";"
         );
         return resultSet.next() ? resultSet.getString(1) : "";
     }
@@ -467,18 +470,16 @@ public class Database {
     public Address getLocation(String postal){
         try {
             ResultSet resultSet = statement.executeQuery(
-                    "select pID, sID, cID from user_address " +
+                    "select user_address_code_postal.pID, user_address_code_state.sID, user_address_code_country.cID " +
+                            "from user_address " +
                             "join user_address_code_postal on user_address.Location = user_address_code_postal.pID " +
                             "join user_address_code_state on user_address_code_postal.State = user_address_code_state.sID " +
                             "join user_address_code_country on user_address_code_state.Country = user_address_code_country.cID " +
                             "where user_address_code_postal.PostalCode = '" + postal + "'" +
                             ";"
             );
-            if(resultSet.next()){
-                return new Address(getCity(resultSet.getInt(1)), getState(resultSet.getInt(1)), getCountry(resultSet.getInt(3)));
-            } else {
-                System.out.println("Location retrieve Location");
-            }
+            if(resultSet.next()) return new Address(getCity(resultSet.getInt(1)), getState(resultSet.getInt(2)), getCountry(resultSet.getInt(3)));
+            else System.out.println("Unable to retrieve Location");
         } catch (SQLException e) {
             System.out.println("Error in Location!");
         }
