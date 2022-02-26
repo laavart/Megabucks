@@ -36,7 +36,7 @@
     </bottom>
    <center>
        <VBox alignment="CENTER" BorderPane.alignment="CENTER">
-           <GridPane alignment="CENTER" gridLinesVisible="true" prefHeight="558.0" prefWidth="600.0">
+           <GridPane alignment="CENTER" gridLinesVisible="true" prefWidth="600.0">
                <columnConstraints>
                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
