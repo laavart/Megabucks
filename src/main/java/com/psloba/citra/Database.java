@@ -353,6 +353,15 @@ public class Database {
         return null;
     }
 
+    public boolean searchUser(String user) {
+        try {
+            return checkForUser(user) != -1;
+        } catch (SQLException e) {
+            System.out.println("Error in Search!");
+        }
+        return false;
+    }
+
     public Client validateUser(String username, String token){
         try {
             int id = checkForUser(username);
@@ -657,5 +666,4 @@ public class Database {
             System.out.println("Error!");
         }
     }
-
 }
