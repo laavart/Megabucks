@@ -70,6 +70,7 @@ public class Database {
                     "create table user_address_code_postal (" +
                             "pID int primary key," +
                             "City varchar(100)," +
+                            "PostalCode varchar(6), " +
                             "State int, " +
                             "foreign key (State) references user_address_code_state(sID)" +
                             ");"
@@ -82,8 +83,8 @@ public class Database {
                             "uID int primary key, " +
                             "AddressLine1 varchar(100), " +
                             "AddressLine2 varchar(100), " +
-                            "PostalCode int, " +
-                            "foreign key (PostalCode) references user_address_code_postal(pID) " +
+                            "Location int, " +
+                            "foreign key (Location) references user_address_code_postal(pID) " +
                             ");"
             );
         }
@@ -292,7 +293,7 @@ public class Database {
         int sID = getStateCode(address);
 
         ResultSet resultSet = statement.executeQuery(
-                "select pID from user_address_code_postal where City = '"+address.city()+"';"
+                "select pID from user_address_code_postal where PostalCode = '"+address.postal()+"';"
         );
 
         if(!resultSet.next()){
@@ -305,6 +306,7 @@ public class Database {
                     "insert into user_address_code_postal values (" +
                             pID + "," +
                             "'" + address.city() + "'," +
+                            "'" + address.postal() + "'," +
                             sID +
                             ");"
             );
@@ -313,9 +315,9 @@ public class Database {
         } else return resultSet.getInt(1);
     }
 
-    private String getCity(int pID) throws SQLException {
+    private String getCity(int postal) throws SQLException {
         ResultSet resultSet = statement.executeQuery(
-                "select City from user_address_code_postal where pID = "+pID+";"
+                "select City from user_address_code_postal where PostalCode = "+postal+";"
         );
         return resultSet.next() ? resultSet.getString(1) : "";
     }
@@ -326,11 +328,11 @@ public class Database {
                 ResultSet resultSet = statement.executeQuery(
                         "select " +
                                 "user_master.Name, user_master.DOB, comm_master.Email, comm_master.Mobile, user_address.AddressLine1, user_address.AddressLine2, " +
-                                "user_address.PostalCode, user_address_code_postal.City, user_address_code_state.State, user_address_code_country.Country " +
+                                "user_address_code_postal.PostalCode, user_address_code_postal.City, user_address_code_state.State, user_address_code_country.Country " +
                                 "from user_master " +
                                 "join user_address on user_master.uID = user_address.uID " +
                                 "join comm_master on user_address.uID = comm_master.uID " +
-                                "join user_address_code_postal on user_address.PostalCode = user_address_code_postal.pID " +
+                                "join user_address_code_postal on user_address.Location = user_address_code_postal.pID " +
                                 "join user_address_code_state on user_address_code_postal.State = user_address_code_state.sID " +
                                 "join user_address_code_country on user_address_code_state.Country = user_address_code_country.cID " +
                                 "where Username = '" + username + "'" +
@@ -460,6 +462,27 @@ public class Database {
             System.out.println("Rollback Error!");
         }
         return -1;
+    }
+
+    public Address getLocation(String postal){
+        try {
+            ResultSet resultSet = statement.executeQuery(
+                    "select pID, sID, cID from user_address " +
+                            "join user_address_code_postal on user_address.Location = user_address_code_postal.pID " +
+                            "join user_address_code_state on user_address_code_postal.State = user_address_code_state.sID " +
+                            "join user_address_code_country on user_address_code_state.Country = user_address_code_country.cID " +
+                            "where user_address_code_postal.PostalCode = '" + postal + "'" +
+                            ";"
+            );
+            if(resultSet.next()){
+                return new Address(getCity(resultSet.getInt(1)), getState(resultSet.getInt(1)), getCountry(resultSet.getInt(3)));
+            } else {
+                System.out.println("Location retrieve Location");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error in Location!");
+        }
+        return null;
     }
 
     public boolean changePassword(String username, String code, String newToken){

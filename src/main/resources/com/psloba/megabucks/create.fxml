@@ -264,7 +264,7 @@
                <buttons>
                    <Button cancelButton="true" mnemonicParsing="false" onAction="#onBack" text="Back" textAlignment="CENTER" />
                <Button layoutX="428.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClear" text="Clear" textAlignment="CENTER" />
-                   <Button defaultButton="true" mnemonicParsing="false" text="Submit" textAlignment="CENTER" />
+                   <Button defaultButton="true" mnemonicParsing="false" onAction="#onSubmit" text="Submit" textAlignment="CENTER" />
                </buttons>
               <VBox.margin>
                   <Insets />

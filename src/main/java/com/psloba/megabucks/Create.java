@@ -1,5 +1,6 @@
 package com.psloba.megabucks;
 
+import com.psloba.citra.Client;
 import com.psloba.citra.client.*;
 
 import javafx.fxml.FXML;
@@ -77,7 +78,7 @@ public class Create {
     @FXML
     private void matchingPassword(){
         String message = "Password Mismatch!\n";
-        if(!Objects.equals(username.getText(), repassword.getText()))
+        if(!Objects.equals(password.getText(), repassword.getText()))
             messagebox.appendText(message);
         else while(messagebox.getText().contains(message)) {
             int i = messagebox.getText().indexOf(message);
@@ -96,6 +97,14 @@ public class Create {
             int l = messagebox.getText().length();
             messagebox.deleteText(i,l);
         }
+    }
+
+    @FXML
+    private void retrievingLocation(){
+        Address address = Application.database.getLocation(postal.getText());
+        city.setText(address.city());
+        state.setText(address.state());
+        country.setText(address.country());
     }
 
     @FXML
@@ -126,5 +135,7 @@ public class Create {
         Comm comm = new Comm(email.getText(), mobile.getText());
         Security security = new Security(password.getText(), passcode.getText());
         Address address = new Address(address1.getText(), address2.getText(), postal.getText(), city.getText(), state.getText(), country.getText());
+        Application.client = new Client(user, security, comm, address);
+        int id = Application.database.addNewUser(Application.client);
     }
 }
