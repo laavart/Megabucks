@@ -35,10 +35,10 @@ public class Application extends javafx.application.Application {
     public static void main(String[] args) throws DBInvalidException, IOException {
         database = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
 
-        Scenes.put("login.fxml", new Scene(new FXMLLoader(Application.class.getResource("login.fxml")).load(), 600, 500));
-        Scenes.put("main.fxml", new Scene(new FXMLLoader(Application.class.getResource("main.fxml")).load(), 600, 500));
-        Scenes.put("forgot.fxml", new Scene(new FXMLLoader(Application.class.getResource("forgot.fxml")).load(), 600, 500));
-        Scenes.put("create.fxml", new Scene(new FXMLLoader(Application.class.getResource("create.fxml")).load(), 600, 500));
+        Scenes.put("login.fxml", new Scene(new FXMLLoader(Application.class.getResource("login.fxml")).load()));
+        Scenes.put("main.fxml", new Scene(new FXMLLoader(Application.class.getResource("main.fxml")).load()));
+        Scenes.put("forgot.fxml", new Scene(new FXMLLoader(Application.class.getResource("forgot.fxml")).load()));
+        Scenes.put("create.fxml", new Scene(new FXMLLoader(Application.class.getResource("create.fxml")).load()));
 
         launch();
     }

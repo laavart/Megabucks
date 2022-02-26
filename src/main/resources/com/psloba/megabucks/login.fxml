@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.psloba.megabucks.LogIn">
+<BorderPane prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.psloba.megabucks.LogIn">
    <center>
       <VBox alignment="CENTER" prefWidth="400.0" BorderPane.alignment="CENTER">
          <HBox alignment="CENTER_LEFT">
@@ -51,7 +51,7 @@
                                  <Font name="System Italic" size="12.0" />
                               </font>
                            </TextField>
-                           <ToggleButton fx:id="show" mnemonicParsing="false" onAction="#onShow" prefWidth="60.0" text="Show">
+                           <ToggleButton mnemonicParsing="false" onAction="#onShow" prefWidth="60.0" text="Show">
                               <HBox.margin>
                                  <Insets bottom="10.0" right="10.0" top="10.0" />
                               </HBox.margin>
@@ -63,7 +63,7 @@
             </children>
          </HBox>
          <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="174.0">
-            <Label fx:id="forgot" onMouseClicked="#onClickingForgot" prefHeight="26.0" text="Forgot Password?" textFill="BLUE">
+            <Label onMouseClicked="#onClickingForgot" prefHeight="26.0" text="Forgot Password?" textFill="BLUE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -74,14 +74,14 @@
          </HBox>
          <BorderPane translateY="10.0">
             <left>
-               <Label fx:id="create" onMouseClicked="#onClickingCreate" prefHeight="26.0" text="Create New Account!" textFill="BLUE" BorderPane.alignment="CENTER">
+               <Label onMouseClicked="#onClickingCreate" prefHeight="26.0" text="Create New Account!" textFill="BLUE" BorderPane.alignment="CENTER">
                   <padding>
                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                   </padding>
                </Label>
             </left>
             <right>
-               <Button fx:id="login" mnemonicParsing="false" onAction="#onClickingLogIn" prefHeight="26.0" text="Proceed" BorderPane.alignment="CENTER">
+               <Button mnemonicParsing="false" onAction="#onClickingLogIn" prefHeight="26.0" text="Proceed" BorderPane.alignment="CENTER">
                   <BorderPane.margin>
                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                   </BorderPane.margin>
