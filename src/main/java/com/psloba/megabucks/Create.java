@@ -28,6 +28,17 @@ public class Create {
     public TextField country;
 
     @FXML
+    public void initialize() {
+        email.focusedProperty().addListener((ov, oldV, newV) -> {if(!newV) checkingEmail();});
+        mobile.focusedProperty().addListener((ov, oldV, newV) -> {if(!newV) checkingMobile();});
+        username.focusedProperty().addListener((ov, oldV, newV) -> {if(!newV) settingUsername();});
+        password.focusedProperty().addListener((ov, oldV, newV) -> {if(!newV) settingPassword();});
+        repassword.focusedProperty().addListener((ov, oldV, newV) -> {if(!newV) matchingPassword();});
+        passcode.focusedProperty().addListener((ov, oldV, newV) -> {if(!newV) settingPassCode();});
+        postal.focusedProperty().addListener((ov, oldV, newV) -> {if(!newV) retrievingLocation();});
+    }
+
+    @FXML
     private void checkingEmail(){
         String message = "E-mail ID Invalid!\n";
         if(!Pattern.compile("^(?=.{7,150})[a-zA-Z0-9+._-]+@[a-zA-Z0-9.]+$").matcher(email.getText()).matches())
@@ -123,8 +134,12 @@ public class Create {
     @FXML
     private void onSubmit() {
         boolean check = true;
-        if(username.getText().equals("")) {
-            username.setPromptText("FIELD EMPTY!");
+        if(name.getText().equals("")) {
+            name.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(dob.getValue() == null){
+            dob.setPromptText("FIELD EMPTY!");
             check = false;
         }
         if(email.getText().equals("")) {
@@ -133,6 +148,10 @@ public class Create {
         }
         if(mobile.getText().equals("")) {
             mobile.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(username.getText().equals("")) {
+            username.setPromptText("FIELD EMPTY!");
             check = false;
         }
         if(password.getText().equals("")) {
@@ -167,7 +186,7 @@ public class Create {
             country.setPromptText("FIELD EMPTY!");
             check = false;
         }
-        if(!messagebox.getText().equals("Messages:")) {
+        if(!messagebox.getText().equals("Messages:\n")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Form!");
             alert.setContentText("Resolve all the Problems First!");
