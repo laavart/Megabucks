@@ -41,62 +41,73 @@ public class Create {
     @FXML
     private void checkingEmail(){
         String message = "E-mail ID Invalid!\n";
-        if(!Pattern.compile("^(?=.{7,150})[a-zA-Z0-9+._-]+@[a-zA-Z0-9.]+$").matcher(email.getText()).matches())
-            messagebox.appendText(message);
-        else while(messagebox.getText().contains(message))
-            messagebox.deleteText(messagebox.getText().indexOf(message), messagebox.getText().length());
+        if(!Pattern.compile("^(?=.{7,150})[a-zA-Z0-9+._-]+@[a-zA-Z0-9.]+$").matcher(email.getText()).matches()) messagebox.appendText(message);
+        else while(messagebox.getText().contains(message)){
+            int i = messagebox.getText().indexOf(message);
+            int j = i + message.length();
+            messagebox.deleteText(i,j);
+        }
     }
 
     @FXML
     private void checkingMobile(){
         String message = "Mobile No. Invalid!\n";
-        if(mobile.getText().length() != 10)
-            messagebox.appendText(message);
-        else while(messagebox.getText().contains(message))
-            messagebox.deleteText(messagebox.getText().indexOf(message), messagebox.getText().length());
+        if(mobile.getText().length() != 10) messagebox.appendText(message);
+        else while(messagebox.getText().contains(message)){
+            int i = messagebox.getText().indexOf(message);
+            int j = i + message.length();
+            messagebox.deleteText(i,j);
+        }
     }
 
     @FXML
     private void settingUsername() {
         String message = "Username Unavailable!\n";
-        if(Application.database.searchUser(username.getText()))
-            messagebox.appendText(message);
-        else while(messagebox.getText().contains(message))
-            messagebox.deleteText(messagebox.getText().indexOf(message), messagebox.getText().length());
+        if(Application.database.searchUser(username.getText())) messagebox.appendText(message);
+        else while(messagebox.getText().contains(message)){
+            int i = messagebox.getText().indexOf(message);
+            int j = i + message.length();
+            messagebox.deleteText(i,j);
+        }
     }
 
     @FXML
     private void settingPassword(){
         String message = "Password Invalid!\n";
-        if(!Pattern.compile("^.*(?=.{8,128})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$").matcher(password.getText()).matches())
-            messagebox.appendText(message);
-        else while(messagebox.getText().contains(message))
-            messagebox.deleteText(messagebox.getText().indexOf(message), messagebox.getText().length());
+        if(!Pattern.compile("^.*(?=.{8,128})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$").matcher(password.getText()).matches()) messagebox.appendText(message);
+        else while(messagebox.getText().contains(message)){
+            int i = messagebox.getText().indexOf(message);
+            int j = i + message.length();
+            messagebox.deleteText(i,j);
+        }
     }
 
     @FXML
     private void matchingPassword(){
         String message = "Password Mismatch!\n";
-        if(!Objects.equals(password.getText(), repassword.getText()))
-            messagebox.appendText(message);
-        else while(messagebox.getText().contains(message))
-            messagebox.deleteText(messagebox.getText().indexOf(message), messagebox.getText().length());
+        if(!Objects.equals(password.getText(), repassword.getText())) messagebox.appendText(message);
+        else while(messagebox.getText().contains(message)){
+            int i = messagebox.getText().indexOf(message);
+            int j = i + message.length();
+            messagebox.deleteText(i,j);
+        }
     }
 
     @FXML
     private void settingPassCode(){
         String message = "PassCode Invalid!\n";
-        if(passcode.getText().length() != 7)
-            messagebox.appendText(message);
-        else while(messagebox.getText().contains(message))
-            messagebox.deleteText(messagebox.getText().indexOf(message), messagebox.getText().length());
+        if(passcode.getText().length() != 7) messagebox.appendText(message);
+        else while(messagebox.getText().contains(message)){
+            int i = messagebox.getText().indexOf(message);
+            int j = i + message.length();
+            messagebox.deleteText(i,j);
+        }
     }
 
     @FXML
     private void retrievingLocation(){
         String message = "Postal Code Invalid!\n";
-        if(postal.getText().length() != 6)
-            messagebox.appendText(message);
+        if(postal.getText().length() != 6) messagebox.appendText(message);
         else {
             Address address = Application.database.getLocation(postal.getText());
             if(address != null) {
@@ -104,8 +115,11 @@ public class Create {
                 state.setText(address.state());
                 country.setText(address.country());
             }
-            while(messagebox.getText().contains(message))
-                messagebox.deleteText(messagebox.getText().indexOf(message), messagebox.getText().length());
+            while(messagebox.getText().contains(message)){
+                int i = messagebox.getText().indexOf(message);
+                int j = i + message.length();
+                messagebox.deleteText(i,j);
+            }
         }
     }
 
