@@ -273,7 +273,7 @@
        </VBox>
    </center>
    <left>
-      <TextArea fx:id="messagebox" prefHeight="200.0" prefWidth="200.0" promptText="Message" style="-fx-text-fill: red;" text="Messages:&#10;" BorderPane.alignment="CENTER">
+      <TextArea fx:id="messagebox" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Message" style="-fx-text-fill: red;" text="Messages:&#10;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
