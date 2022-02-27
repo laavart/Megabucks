@@ -101,11 +101,21 @@ public class Create {
 
     @FXML
     private void retrievingLocation(){
-        Address address = Application.database.getLocation(postal.getText());
-        if(address != null){
-            city.setText(address.city());
-            state.setText(address.state());
-            country.setText(address.country());
+        String message = "Postal Code Invalid!\n";
+        if(postal.getText().length() != 6)
+            messagebox.appendText(message);
+        else {
+            Address address = Application.database.getLocation(postal.getText());
+            if(address != null) {
+                city.setText(address.city());
+                state.setText(address.state());
+                country.setText(address.country());
+            }
+            while (messagebox.getText().contains(message)) {
+                int i = messagebox.getText().indexOf(message);
+                int l = messagebox.getText().length();
+                messagebox.deleteText(i, l);
+            }
         }
     }
 
