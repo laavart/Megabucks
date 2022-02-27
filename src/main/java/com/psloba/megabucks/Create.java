@@ -122,24 +122,59 @@ public class Create {
 
     @FXML
     private void onSubmit() {
-        if(username.getText()==null) username.setText("FIELD EMPTY!");
-        else if(email.getText()==null) email.setText("FIELD EMPTY!");
-        else if(mobile.getText()==null) mobile.setText("FIELD EMPTY!");
-        else if(password.getText()==null) password.setText("FIELD EMPTY!");
-        else if(repassword.getText()==null) repassword.setText("FIELD EMPTY!");
-        else if(passcode.getText()==null) passcode.setText("FIELD EMPTY!");
-        else if(address1.getText()==null) address1.setText("FIELD EMPTY!");
-        else if(postal.getText()==null) postal.setText("FIELD EMPTY!");
-        else if(city.getText()==null) city.setText("FIELD EMPTY!");
-        else if(state.getText()==null) state.setText("FIELD EMPTY!");
-        else if(country.getText()==null) country.setText("FIELD EMPTY!");
-        else if(!messagebox.getText().equals("Messages:")) {
+        boolean check = true;
+        if(username.getText().equals("")) {
+            username.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(email.getText().equals("")) {
+            email.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(mobile.getText().equals("")) {
+            mobile.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(password.getText().equals("")) {
+            password.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(repassword.getText().equals("")) {
+            repassword.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(passcode.getText().equals("")) {
+            passcode.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(address1.getText().equals("")) {
+            address1.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(postal.getText().equals("")) {
+            postal.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(city.getText().equals("")) {
+            city.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(state.getText().equals("")) {
+            state.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(country.getText().equals("")) {
+            country.setPromptText("FIELD EMPTY!");
+            check = false;
+        }
+        if(!messagebox.getText().equals("Messages:")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Form!");
             alert.setContentText("Resolve all the Problems First!");
             alert.show();
+            check = false;
         }
-        else {
+        if(check) {
             User user = new User(username.getText(), name.getText(), dob.getValue());
             Comm comm = new Comm(email.getText(), mobile.getText());
             Security security = new Security(password.getText(), passcode.getText());
