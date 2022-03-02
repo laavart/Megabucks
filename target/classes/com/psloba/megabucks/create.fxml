@@ -27,7 +27,7 @@
             <effect>
                 <SepiaTone />
             </effect>
-            <Label prefHeight="30.0" text="Label">
+            <Label prefHeight="30.0" text="pSlOba">
                 <font>
                     <Font name="System Italic" size="16.0" />
                 </font>
