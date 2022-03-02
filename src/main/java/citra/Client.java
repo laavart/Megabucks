@@ -1,6 +1,6 @@
-package com.psloba.citra;
+package citra;
 
-import com.psloba.citra.client.*;
+import citra.client.*;
 
 public record Client(User user, Security security, Comm comm, Address address) {
 

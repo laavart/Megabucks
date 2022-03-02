@@ -1,4 +1,4 @@
-package com.psloba.citra.client;
+package citra.client;
 
 public record User(String username, String name, java.time.LocalDate dob) {
     public User(String name, java.time.LocalDate dob){

@@ -1,4 +1,4 @@
-package com.psloba.citra;
+package citra;
 
 public enum Source {
     MYSQL(

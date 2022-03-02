@@ -1,7 +1,7 @@
 package com.psloba.megabucks;
 
-import com.psloba.citra.Client;
-import com.psloba.citra.client.*;
+import citra.Client;
+import citra.client.*;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

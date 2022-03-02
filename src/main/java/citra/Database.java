@@ -1,12 +1,12 @@
-package com.psloba.citra;
+package citra;
 
 import java.sql.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import com.psloba.citra.client.*;
-import com.psloba.citra.exception.*;
+import citra.client.*;
+import citra.exception.*;
 
 public class Database {
 

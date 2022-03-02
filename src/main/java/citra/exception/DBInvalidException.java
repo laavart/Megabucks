@@ -1,4 +1,4 @@
-package com.psloba.citra.exception;
+package citra.exception;
 
 public class DBInvalidException extends Exception{
     public DBInvalidException() {
