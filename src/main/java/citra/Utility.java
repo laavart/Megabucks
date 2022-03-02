@@ -1,5 +1,0 @@
-package citra;
-
-class Utility {
-
-}
