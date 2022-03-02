@@ -203,7 +203,7 @@ public class Create {
         }
         if(!messagebox.getText().equals("Messages:\n")) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Form!");
+            alert.setTitle("MegaBucks");
             alert.setContentText("Resolve all the Problems First!");
             alert.show();
             check = false;
@@ -218,11 +218,11 @@ public class Create {
             Alert alert;
             if(id != -1) {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Accounts!");
+                alert.setTitle("MegaBucks");
                 alert.setContentText("Account Created!");
             } else {
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Accounts!");
+                alert.setTitle("MegaBucks");
                 alert.setContentText("Unable to Create Account!");
             }
             alert.show();
