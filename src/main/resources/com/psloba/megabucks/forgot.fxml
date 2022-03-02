@@ -28,7 +28,7 @@
                 <effect>
                     <SepiaTone />
                 </effect>
-                <Label prefHeight="30.0" text="Label">
+                <Label prefHeight="30.0" text="pSlOba">
                     <font>
                         <Font name="System Italic" size="16.0" />
                     </font>
@@ -60,6 +60,18 @@
                             </HBox.margin>
                         </TextField>
                     </HBox>
+                    <HBox alignment="CENTER_LEFT" layoutX="15.0" layoutY="87.0">
+                        <Label prefHeight="26.0" prefWidth="70.0" text="PassCode:">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="passcode" onAction="#checkingPassCode" prefHeight="26.0" prefWidth="200.0" promptText="Security Code">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </HBox>
                     <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="72.0">
                         <Label prefHeight="26.0" prefWidth="70.0" text="Password:">
                             <HBox.margin>
@@ -78,18 +90,6 @@
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </HBox.margin>
                         </PasswordField>
-                    </HBox>
-                    <HBox alignment="CENTER_LEFT" layoutX="15.0" layoutY="87.0">
-                        <Label prefHeight="26.0" prefWidth="70.0" text="PassCode:">
-                            <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </HBox.margin>
-                        </Label>
-                        <TextField fx:id="passcode" onAction="#checkingPassCode" prefHeight="26.0" prefWidth="200.0" promptText="Security Code">
-                            <HBox.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </HBox.margin>
-                        </TextField>
                     </HBox>
                 </VBox>
             </center>

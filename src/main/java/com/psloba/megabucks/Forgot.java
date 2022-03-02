@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Border;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -76,25 +75,6 @@ public class Forgot {
 
     @FXML
     private void onSubmit() {
-        boolean check = true;
-        if(username.getText().equals("")) {
-            username.setPromptText("FIELD EMPTY!");
-            check = false;
-        }
-        if(password.getText().equals("")) {
-            password.setPromptText("FIELD EMPTY!");
-            check = false;
-        }
-        if(repassword.getText().equals("")) {
-            repassword.setPromptText("FIELD EMPTY!");
-            check = false;
-        }
-        if(passcode.getText().equals("")) {
-            passcode.setPromptText("FIELD EMPTY!");
-            check = false;
-        }
-        if(check) {
-
-        }
+        Application.database.changePassword(username.getText(),passcode.getText(),password.getText());
     }
 }
