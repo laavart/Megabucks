@@ -137,6 +137,7 @@ public class Create {
         username.setText("");
         password.setText("");
         repassword.setText("");
+        passcode.setText("");
         address1.setText("");
         address2.setText("");
         postal.setText("");

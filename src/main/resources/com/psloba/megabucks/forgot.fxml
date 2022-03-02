@@ -6,6 +6,106 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.psloba.megabucks.Forgot" prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.psloba.megabucks.Forgot">
+    <BorderPane>
+        <top>
+            <HBox alignment="BOTTOM_CENTER" style="-fx-background-color: Gold;" BorderPane.alignment="CENTER">
+                <effect>
+                    <SepiaTone />
+                </effect>
+                <Label prefHeight="60.0" text="MegaBucks">
+                    <font>
+                        <Font name="System Bold" size="32.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Label>
+            </HBox>
+        </top>
+        <bottom>
+            <HBox alignment="TOP_CENTER" style="-fx-background-color: Gold;" BorderPane.alignment="CENTER">
+                <effect>
+                    <SepiaTone />
+                </effect>
+                <Label prefHeight="30.0" text="Label">
+                    <font>
+                        <Font name="System Italic" size="16.0" />
+                    </font>
+                </Label>
+            </HBox>
+        </bottom>
+        <left>
+            <TextArea editable="false" prefHeight="345.0" prefWidth="200.0" promptText="Information" text="&#10;FORGOT&#10;PASSWORD?&#10;&#10;DON'T WORRY&#10;JUST TYPE THE&#10;MAGIC CODE&#10;AND CHANGE&#10;WHAT YOU&#10;FORGOT&#10;" BorderPane.alignment="CENTER">
+                <font>
+                    <Font name="System Bold Italic" size="20.0" />
+                </font></TextArea>
+        </left>
+      <center>
+         <BorderPane BorderPane.alignment="CENTER">
+            <center>
+                <VBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                    <HBox alignment="CENTER_LEFT">
+                        <Label prefHeight="26.0" prefWidth="70.0" text="Username:">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="username" onAction="#settingUsername" prefHeight="26.0" prefWidth="200.0" promptText="Username">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="72.0">
+                        <Label prefHeight="26.0" prefWidth="70.0" text="Password:">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </Label>
+                        <PasswordField fx:id="password" onAction="#settingPassword" prefHeight="26.0" prefWidth="200.0" promptText="Password">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </PasswordField>
+                    </HBox>
+                    <HBox alignment="CENTER_RIGHT" layoutX="15.0" layoutY="131.0">
+                        <PasswordField fx:id="repassword" onAction="#matchingPassword" prefHeight="26.0" prefWidth="200.0" promptText="Re-enter Password">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </PasswordField>
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" layoutX="15.0" layoutY="87.0">
+                        <Label prefHeight="26.0" prefWidth="70.0" text="PassCode:">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </Label>
+                        <TextField fx:id="passcode" onAction="#checkingPassCode" prefHeight="26.0" prefWidth="200.0" promptText="Security Code">
+                            <HBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </HBox.margin>
+                        </TextField>
+                    </HBox>
+                </VBox>
+            </center>
+            <bottom>
+                 <ButtonBar cache="true" BorderPane.alignment="CENTER">
+                     <buttons>
+                         <Button alignment="CENTER" cancelButton="true" mnemonicParsing="false" onAction="#onBack" text="Back" textAlignment="CENTER" />
+                         <Button alignment="CENTER" layoutX="428.0" layoutY="10.0" mnemonicParsing="false" onAction="#onClear" text="Clear" textAlignment="CENTER" />
+                         <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#onSubmit" text="Submit" textAlignment="CENTER" />
+                     </buttons>
+                     <padding>
+                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                 </ButtonBar>
+            </bottom>
+         </BorderPane>
+      </center>
+    </BorderPane>
 </AnchorPane>

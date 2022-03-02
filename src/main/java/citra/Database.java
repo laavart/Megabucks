@@ -681,14 +681,4 @@ public class Database {
         }
         return false;
     }
-
-    public void close() {
-        try {
-            statement.close();
-            connection.close();
-
-        } catch (SQLException e) {
-            System.out.println("Error!");
-        }
-    }
 }
