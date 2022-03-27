@@ -17,29 +17,30 @@ public class Application extends javafx.application.Application {
     static Scene scene = null;
     static Stage stage = null;
 
-    static HashMap<String, Scene> Scenes = new HashMap<>(4);
-
     static Database database = null;
     static Client client = null;
+
+    static Scene getScene(String scene){
+        try {
+            return new Scene(new FXMLLoader(Application.class.getResource(scene+".fxml")).load());
+        }
+        catch (IOException e) {
+            return null;
+        }
+    }
 
     @Override
     public void start(Stage stage) {
         Application.stage = stage;
-        scene = Scenes.get("login.fxml");
+        scene = getScene("login");
         stage.setTitle("MegaBucks");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
     }
 
-    public static void main(String[] args) throws DBInvalidException, IOException {
+    public static void main(String[] args) throws DBInvalidException {
         database = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
-
-        Scenes.put("login.fxml", new Scene(new FXMLLoader(Application.class.getResource("login.fxml")).load()));
-        Scenes.put("main.fxml", new Scene(new FXMLLoader(Application.class.getResource("main.fxml")).load()));
-        Scenes.put("forgot.fxml", new Scene(new FXMLLoader(Application.class.getResource("forgot.fxml")).load()));
-        Scenes.put("create.fxml", new Scene(new FXMLLoader(Application.class.getResource("create.fxml")).load()));
-
         launch();
     }
 }

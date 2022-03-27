@@ -17,12 +17,12 @@ public class LogIn {
 
     @FXML
     private void onClickingForgot() {
-        Application.stage.setScene(Application.Scenes.get("forgot.fxml"));
+        Application.stage.setScene(Application.getScene("forgot"));
     }
 
     @FXML
     private void onClickingCreate() {
-        Application.stage.setScene(Application.Scenes.get("create.fxml"));
+        Application.stage.setScene(Application.getScene("create"));
     }
 
     @FXML
@@ -30,7 +30,7 @@ public class LogIn {
         assert Application.database != null;
         Application.client = Application.database.validateUser(username.getText(), password.getText());
 
-        if(Application.client != null) Application.stage.setScene(Application.Scenes.get("main.fxml"));
+        if(Application.client != null) Application.stage.setScene(Application.getScene("main"));
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Details!");

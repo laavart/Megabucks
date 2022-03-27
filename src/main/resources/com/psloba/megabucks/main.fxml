@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.psloba.megabucks.Main">
-    <BorderPane>
+    <BorderPane layoutX="-21.0" prefHeight="596.0" prefWidth="683.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <top>
             <HBox alignment="BOTTOM_CENTER" style="-fx-background-color: Gold;" BorderPane.alignment="CENTER">
                 <effect>
