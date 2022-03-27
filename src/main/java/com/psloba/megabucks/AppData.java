@@ -2,6 +2,7 @@ package com.psloba.megabucks;
 
 import citra.Client;
 import citra.Database;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
