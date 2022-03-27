@@ -11,7 +11,7 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) {
         AppData.stage = stage;
-        AppData.scene = AppData.getScene("login");
+        AppData.scene = AppData.Scenes.get("login");
         stage.setTitle("MegaBucks");
         stage.setScene(AppData.scene);
         stage.setResizable(false);
