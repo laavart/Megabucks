@@ -4,23 +4,16 @@ import citra.Database;
 import citra.Source;
 import citra.exception.*;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class Application extends javafx.application.Application {
 
-    static Scene scene = null;
-    static Stage stage = null;
-
     @Override
     public void start(Stage stage) {
-        Application.stage = stage;
-        scene = getScene("login");
+        AppData.stage = stage;
+        AppData.scene = AppData.getScene("login");
         stage.setTitle("MegaBucks");
-        stage.setScene(scene);
+        stage.setScene(AppData.scene);
         stage.setResizable(false);
         stage.show();
     }
@@ -30,12 +23,4 @@ public class Application extends javafx.application.Application {
         launch();
     }
 
-    static Scene getScene(String scene){
-        try {
-            return new Scene(new FXMLLoader(Application.class.getResource(scene+".fxml")).load());
-        }
-        catch (IOException e) {
-            return null;
-        }
-    }
 }

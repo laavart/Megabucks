@@ -125,7 +125,7 @@ public class Create {
 
     @FXML
     private void onBack(){
-        Application.stage.setScene(Application.getScene("login"));
+        AppData.stage.setScene(AppData.getScene("login"));
     }
 
     @FXML
