@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class AppData {
 
@@ -17,12 +18,16 @@ public class AppData {
     static Database database = null;
     static Client client = null;
 
-    static Scene getScene(String scene){
+    static HashMap<String, Scene> Scenes = new HashMap<>(4);
+
+    static {
         try {
-            return new Scene(new FXMLLoader(Application.class.getResource(scene+".fxml")).load());
-        }
-        catch (IOException e) {
-            return null;
+            Scenes.put("create", new Scene(new FXMLLoader(Application.class.getResource("create.fxml")).load()));
+            Scenes.put("forgot", new Scene(new FXMLLoader(Application.class.getResource("forgot.fxml")).load()));
+            Scenes.put("login", new Scene(new FXMLLoader(Application.class.getResource("login.fxml")).load()));
+            Scenes.put("main", new Scene(new FXMLLoader(Application.class.getResource("main.fxml")).load()));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
