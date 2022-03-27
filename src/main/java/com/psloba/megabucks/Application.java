@@ -22,5 +22,4 @@ public class Application extends javafx.application.Application {
         AppData.database = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
         launch();
     }
-
 }
