@@ -15,15 +15,6 @@ public class Application extends javafx.application.Application {
     static Scene scene = null;
     static Stage stage = null;
 
-    static Scene getScene(String scene){
-        try {
-            return new Scene(new FXMLLoader(Application.class.getResource(scene+".fxml")).load());
-        }
-        catch (IOException e) {
-            return null;
-        }
-    }
-
     @Override
     public void start(Stage stage) {
         Application.stage = stage;
@@ -37,5 +28,14 @@ public class Application extends javafx.application.Application {
     public static void main(String[] args) throws DBInvalidException {
         AppData.database = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
         launch();
+    }
+
+    static Scene getScene(String scene){
+        try {
+            return new Scene(new FXMLLoader(Application.class.getResource(scene+".fxml")).load());
+        }
+        catch (IOException e) {
+            return null;
+        }
     }
 }
