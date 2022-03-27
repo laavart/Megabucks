@@ -20,7 +20,7 @@ public class Forgot {
     @FXML
     private void checkingUsername(){
         String message = "User Not Found!\n";
-        if(!Application.database.searchUser(username.getText())) messagebox.appendText(message);
+        if(!AppData.database.searchUser(username.getText())) messagebox.appendText(message);
         else while(messagebox.getText().contains(message)){
             int i = messagebox.getText().indexOf(message);
             int j = i + message.length();
@@ -102,7 +102,7 @@ public class Forgot {
         }
         if(check) {
             Alert alert;
-            if(Application.database.changePassword(username.getText(),passcode.getText(),password.getText())) {
+            if(AppData.database.changePassword(username.getText(),passcode.getText(),password.getText())) {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("MegaBucks");
                 alert.setContentText("Password Changed!");

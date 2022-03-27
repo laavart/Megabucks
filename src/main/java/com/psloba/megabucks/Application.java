@@ -1,6 +1,5 @@
 package com.psloba.megabucks;
 
-import citra.Client;
 import citra.Database;
 import citra.Source;
 import citra.exception.*;
@@ -15,9 +14,6 @@ public class Application extends javafx.application.Application {
 
     static Scene scene = null;
     static Stage stage = null;
-
-    static Database database = null;
-    static Client client = null;
 
     static Scene getScene(String scene){
         try {
@@ -39,7 +35,7 @@ public class Application extends javafx.application.Application {
     }
 
     public static void main(String[] args) throws DBInvalidException {
-        database = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
+        AppData.database = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
         launch();
     }
 }

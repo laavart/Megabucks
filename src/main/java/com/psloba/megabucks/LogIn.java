@@ -27,10 +27,10 @@ public class LogIn {
 
     @FXML
     private void onClickingLogIn() {
-        assert Application.database != null;
-        Application.client = Application.database.validateUser(username.getText(), password.getText());
+        assert AppData.database != null;
+        AppData.client = AppData.database.validateUser(username.getText(), password.getText());
 
-        if(Application.client != null) Application.stage.setScene(Application.getScene("main"));
+        if(AppData.client != null) Application.stage.setScene(Application.getScene("main"));
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Details!");

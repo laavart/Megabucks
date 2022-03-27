@@ -63,7 +63,7 @@ public class Create {
     @FXML
     private void settingUsername() {
         String message = "Username Unavailable!\n";
-        if(Application.database.searchUser(username.getText())) messagebox.appendText(message);
+        if(AppData.database.searchUser(username.getText())) messagebox.appendText(message);
         else while(messagebox.getText().contains(message)){
             int i = messagebox.getText().indexOf(message);
             int j = i + message.length();
@@ -109,7 +109,7 @@ public class Create {
         String message = "Postal Code Invalid!\n";
         if(postal.getText().length() != 6) messagebox.appendText(message);
         else {
-            Address address = Application.database.getLocation(postal.getText());
+            Address address = AppData.database.getLocation(postal.getText());
             if(address != null) {
                 city.setText(address.city());
                 state.setText(address.state());
@@ -213,8 +213,8 @@ public class Create {
             Comm comm = new Comm(email.getText(), mobile.getText());
             Security security = new Security(password.getText(), passcode.getText());
             Address address = new Address(address1.getText(), address2.getText(), postal.getText(), city.getText(), state.getText(), country.getText());
-            Application.client = new Client(user, security, comm, address);
-            int id = Application.database.addNewUser(Application.client);
+            AppData.client = new Client(user, security, comm, address);
+            int id = AppData.database.addNewUser(AppData.client);
             Alert alert;
             if(id != -1) {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
