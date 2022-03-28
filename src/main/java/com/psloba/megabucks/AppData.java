@@ -18,7 +18,7 @@ public class AppData {
     static Database database = null;
     static Client client = null;
 
-    static HashMap<String, Scene> Scenes = new HashMap<>(4);
+    static HashMap<String, Scene> Scenes = new HashMap<>();
     static {
         try {
             Scenes.put("create", new Scene(new FXMLLoader(Application.class.getResource("create.fxml")).load()));
