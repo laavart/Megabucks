@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Main {
@@ -18,10 +20,11 @@ public class Main {
     @FXML
     private void initialize() throws SQLException {
 
-        ResultSet resultSet = AppData.database.executeQuery("Select uID from user_master;");
+        ResultSet resultSet = AppData.database.executeQuery("Select uID, username from user_master;");
         ArrayList<String> users = new ArrayList<>();
         while (resultSet.next()) {
-            users.add(resultSet.getString(0));
+            AppData.users.put(resultSet.getString(1), resultSet.getInt(0));
+            users.add(resultSet.getString(1));
         }
         recipients.setItems(FXCollections.observableList(users));
         resultSet.close();
@@ -47,7 +50,35 @@ public class Main {
     }
 
     @FXML
-    private void onSend(){
+    private void onSend() throws SQLException {
+        int sender = AppData.client, receiver = AppData.users.get(recipients.getValue());
+        LocalDateTime stamp = LocalDateTime.now();
+        String message = this.message.getText();
 
+        AppData.database.executeUpdate(
+                "insert into player_" + sender + "(" +
+                        stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
+                        sender + "," +
+                        receiver + "," +
+                        "'" + message + "'" +
+                        ");"
+        );
+        AppData.database.executeUpdate(
+                "insert into player_" + receiver + "(" +
+                        stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
+                        sender + "," +
+                        receiver + "," +
+                        "'" + message + "'" +
+                        ");"
+        );
+
+        messagebox.appendText(
+                stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) +
+                        "\nFrom : " + sender +
+                        "\nTo : " + receiver +
+                        "\nMessage :" +
+                        "\n" + message +
+                        "\n"
+        );
     }
 }

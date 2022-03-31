@@ -214,8 +214,8 @@ public class Create {
             Comm comm = new Comm(email.getText(), mobile.getText());
             Security security = new Security(password.getText(), passcode.getText());
             Address address = new Address(address1.getText(), address2.getText(), postal.getText(), city.getText(), state.getText(), country.getText());
-            AppData.client = new Client(user, security, comm, address);
-            int id = AppData.database.addNewUser(AppData.client);
+            Client client = new Client(user, security, comm, address);
+            int id = AppData.database.addNewUser(client);
             Alert alert;
             if(id != -1) {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);

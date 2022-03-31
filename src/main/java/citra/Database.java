@@ -323,7 +323,7 @@ public class Database {
         return resultSet.next() ? resultSet.getString(1) : "";
     }
 
-    private Client getUser(String username, String token){
+    public Client getUser(String username, String token){
         try {
             if(validateWithToken(username, token)){
                 ResultSet resultSet = statement.executeQuery(
@@ -365,7 +365,7 @@ public class Database {
         return false;
     }
 
-    public Client validateUser(String username, String token){
+    public int validateUser(String username, String token){
         try {
             int id = checkForUser(username);
 
@@ -374,14 +374,14 @@ public class Database {
                         "select rvID from revoke_master where rvID = "+id+";"
                 );
 
-                if(!resultSet.next()) return getUser(username, token);
+                if(!resultSet.next() && validateWithToken(username, token)) return id;
             }
         } catch (SQLException e) {
             System.out.println("Validation Error!");
         }
 
         System.out.println("User not found!");
-        return null;
+        return -1;
     }
 
     public int addNewUser(Client client){

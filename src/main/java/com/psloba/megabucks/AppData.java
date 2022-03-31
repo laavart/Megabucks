@@ -1,6 +1,5 @@
 package com.psloba.megabucks;
 
-import citra.Client;
 import citra.Database;
 
 import javafx.fxml.FXMLLoader;
@@ -16,7 +15,7 @@ public class AppData {
     static Stage stage = null;
 
     static Database database = null;
-    static Client client = null;
+    static int client = -1;
 
     static HashMap<String, Scene> Scenes = new HashMap<>();
     static {
@@ -29,4 +28,6 @@ public class AppData {
             e.printStackTrace();
         }
     }
+
+    static HashMap<String, Integer> users = new HashMap<>();
 }
