@@ -6,6 +6,8 @@ import citra.exception.*;
 
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 public class Application extends javafx.application.Application {
 
     @Override
@@ -18,8 +20,19 @@ public class Application extends javafx.application.Application {
         stage.show();
     }
 
-    public static void main(String[] args) throws DBInvalidException {
+    public static void main(String[] args) throws DBInvalidException, SQLException {
         AppData.database = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
+
+        if(!AppData.database.searchTable("player_data")) {
+            AppData.database.executeQuery(
+                    "create table player_data(" +
+                            "id integer primary key," +
+                            "score integer," +
+                            "money integer" +
+                            ");"
+            );
+        }
+
         launch();
     }
 }

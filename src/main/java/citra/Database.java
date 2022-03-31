@@ -32,18 +32,6 @@ public class Database {
         System.out.println("Connection Started !");
     }
 
-    private boolean searchTable(String name) throws SQLException {
-        ResultSet resultSet =
-                CheckByOwner.contains(source)
-                        ? statement.executeQuery(source.getTables(database))
-                        : statement.executeQuery(source.getTables()) ;
-
-        while(resultSet.next())
-            if( resultSet.getString(1).equals(name) ) return true;
-
-        return false;
-    }
-
     private static void initialize(Database db) throws SQLException {
         if(!db.searchTable("user_address_code_country")){
             db.statement.executeUpdate(
@@ -137,6 +125,18 @@ public class Database {
         }
 
         db.statement.executeUpdate("set autocommit = 0;");
+    }
+
+    public boolean searchTable(String name) throws SQLException {
+        ResultSet resultSet =
+                CheckByOwner.contains(source)
+                        ? statement.executeQuery(source.getTables(database))
+                        : statement.executeQuery(source.getTables()) ;
+
+        while(resultSet.next())
+            if( resultSet.getString(1).equals(name) ) return true;
+
+        return false;
     }
 
     public static Database connect(Source source, String hostname, String port, String database, String user, String token) throws DBInvalidException {

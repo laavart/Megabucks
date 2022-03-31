@@ -6,6 +6,7 @@ import citra.client.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.sql.SQLException;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -220,7 +221,35 @@ public class Create {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("MegaBucks");
                 alert.setContentText("Account Created!");
-            } else {
+                try {
+                    AppData.database.executeUpdate(
+                            "insert into player_data value(" +
+                                    id + "," +
+                                    "0," +
+                                    "200" +
+                                    ");"
+                    );
+                    if(AppData.database.searchTable("player_"+id)) {
+                        AppData.database.executeUpdate(
+                                "delete from player_" + id + ";"
+                        );
+                    }
+                    else {
+                        AppData.database.executeUpdate(
+                                "create table player_" + id + "(" +
+                                        "sender int," +
+                                        "receiver int," +
+                                        "message varchar(250)," +
+                                        "on datetime" +
+                                        ");"
+                        );
+                    }
+                }
+                catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            else {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("MegaBucks");
                 alert.setContentText("Unable to Create Account!");
