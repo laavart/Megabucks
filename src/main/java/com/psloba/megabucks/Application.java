@@ -23,16 +23,17 @@ public class Application extends javafx.application.Application {
     public static void main(String[] args) throws DBInvalidException, SQLException {
         AppData.database = Database.connect(Source.MYSQL, "localhost", "megabucks", "root", "1234");
 
+        launch();
+
+        assert AppData.database != null : "Database Connection Error in @main";
         if(!AppData.database.searchTable("player_data")) {
             AppData.database.executeQuery(
                     "create table player_data(" +
                             "id integer primary key," +
-                            "score integer," +
-                            "money integer" +
+                            "score int," +
+                            "money int" +
                             ");"
             );
         }
-
-        launch();
     }
 }

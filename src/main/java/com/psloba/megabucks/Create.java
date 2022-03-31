@@ -237,10 +237,10 @@ public class Create {
                     else {
                         AppData.database.executeUpdate(
                                 "create table player_" + id + "(" +
+                                        "date_time datetime," +
                                         "sender int," +
                                         "receiver int," +
-                                        "message varchar(250)," +
-                                        "on datetime" +
+                                        "message varchar(250)" +
                                         ");"
                         );
                     }
