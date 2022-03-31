@@ -222,6 +222,8 @@ public class Create {
                 alert.setTitle("MegaBucks");
                 alert.setContentText("Account Created!");
                 try {
+                    AppData.database.executeUpdate("start transaction;");
+                    //AppData.database.executeUpdate("delete from player_data where id = " + id + ";");
                     AppData.database.executeUpdate(
                             "insert into player_data value(" +
                                     id + "," +
@@ -229,21 +231,16 @@ public class Create {
                                     "200" +
                                     ");"
                     );
-                    if(AppData.database.searchTable("player_"+id)) {
-                        AppData.database.executeUpdate(
-                                "delete from player_" + id + ";"
-                        );
-                    }
-                    else {
-                        AppData.database.executeUpdate(
-                                "create table player_" + id + "(" +
-                                        "date_time datetime," +
-                                        "sender int," +
-                                        "receiver int," +
-                                        "message varchar(250)" +
-                                        ");"
-                        );
-                    }
+                    //AppData.database.executeUpdate("drop table player_" + id + ";");
+                    AppData.database.executeUpdate(
+                            "create table player_" + id + "(" +
+                                    "date_time datetime," +
+                                    "sender int," +
+                                    "receiver int," +
+                                    "message varchar(250)" +
+                                    ");"
+                    );
+                    AppData.database.executeUpdate("commit;");
                 }
                 catch (SQLException e) {
                     e.printStackTrace();

@@ -16,26 +16,38 @@ public class Main {
     public Button send;
 
     @FXML
-    private void initialize() {
+    private void initialize() throws SQLException {
 
-        try {
-            ResultSet resultSet = AppData.database.executeQuery("Select uID from user_master;");
-            ArrayList<String> users = new ArrayList<>();
-            while (resultSet.next()) {
-                users.add(resultSet.getString(0));
-            }
-            recipients.setItems(FXCollections.observableList(users));
-        } catch (SQLException e) {
-            e.printStackTrace();
+        ResultSet resultSet = AppData.database.executeQuery("Select uID from user_master;");
+        ArrayList<String> users = new ArrayList<>();
+        while (resultSet.next()) {
+            users.add(resultSet.getString(0));
         }
+        recipients.setItems(FXCollections.observableList(users));
+        resultSet.close();
 
-        //CODE
+        resultSet = AppData.database.executeQuery("select * from player_data order by date_time;");
+        while (resultSet.next()) {
+            messagebox.appendText(
+                    resultSet.getString("date_time") +
+                            "\nFrom : " + resultSet.getString("sender") +
+                            "\nTo : " + resultSet.getString("receiver") +
+                            "\nMessage :" +
+                            "\n" + resultSet.getString("message") +
+                            "\n"
+            );
+        }
     }
 
     @FXML
-    private void whileTypingMessage() {
+    private void whileTypingMessage(){
         if(message.getText().length() >= 250) {
             message.setText(message.getText().substring(0,250));
         }
+    }
+
+    @FXML
+    private void onSend(){
+
     }
 }
