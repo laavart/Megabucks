@@ -17,6 +17,12 @@ public class Main {
     public TextArea message;
     public Button send;
 
+    public Label money;
+    public Label score;
+    public Label profit;
+    public Label luck;
+    public TextArea scorebox;
+
     @FXML
     private void initialize() throws SQLException {
 
@@ -40,6 +46,16 @@ public class Main {
                             "\n"
             );
         }
+        resultSet.close();
+
+        resultSet = AppData.database.executeQuery("" +
+                "select * from player_data where id = " + AppData.client + ";"
+        );
+        if(resultSet.next()) {
+            int score = resultSet.getInt("score");
+            int money = resultSet.getInt("money");
+
+        }
     }
 
     @FXML
@@ -51,10 +67,12 @@ public class Main {
 
     @FXML
     private void onSend() throws SQLException {
+
         int sender = AppData.client, receiver = AppData.users.get(recipients.getValue());
         LocalDateTime stamp = LocalDateTime.now();
         String message = this.message.getText();
 
+        AppData.database.executeUpdate("Start Transaction;");
         AppData.database.executeUpdate(
                 "insert into player_" + sender + "(" +
                         stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
@@ -71,6 +89,7 @@ public class Main {
                         "'" + message + "'" +
                         ");"
         );
+        AppData.database.executeUpdate("commit;");
 
         messagebox.appendText(
                 stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) +
