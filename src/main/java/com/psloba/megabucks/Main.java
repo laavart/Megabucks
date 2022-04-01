@@ -26,6 +26,7 @@ public class Main {
     @FXML
     private void initialize() throws SQLException {
 
+        //recipients
         ResultSet resultSet = AppData.database.executeQuery("Select uID, username from user_master;");
         ArrayList<String> users = new ArrayList<>();
         while (resultSet.next()) {
@@ -35,6 +36,7 @@ public class Main {
         recipients.setItems(FXCollections.observableList(users));
         resultSet.close();
 
+        //messagebox
         resultSet = AppData.database.executeQuery("select * from player_data order by date_time;");
         while (resultSet.next()) {
             messagebox.appendText(
@@ -43,18 +45,26 @@ public class Main {
                             "\nTo : " + resultSet.getString("receiver") +
                             "\nMessage :" +
                             "\n" + resultSet.getString("message") +
-                            "\n"
+                            "\n\n"
             );
         }
         resultSet.close();
 
+        //scorebox
         resultSet = AppData.database.executeQuery("" +
-                "select * from player_data where id = " + AppData.client + ";"
+                "select * from player_data where id = " + AppData.clientID + ";"
         );
         if(resultSet.next()) {
             int score = resultSet.getInt("score");
             int money = resultSet.getInt("money");
-
+            this.score.setText(String.valueOf(score));
+            this.money.setText(String.valueOf(money));
+            scorebox.appendText(
+                    LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) +
+                            "\nScore: : " + score +
+                            "\nMoney: : " + money +
+                            "\n\n"
+            );
         }
     }
 
@@ -68,10 +78,19 @@ public class Main {
     @FXML
     private void onSend() throws SQLException {
 
-        int sender = AppData.client, receiver = AppData.users.get(recipients.getValue());
+        int sender = AppData.clientID, receiver = AppData.users.get(recipients.getValue());
         LocalDateTime stamp = LocalDateTime.now();
         String message = this.message.getText();
+        messagebox.appendText(
+                stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) +
+                        "\nFrom : " + sender +
+                        "\nTo : " + receiver +
+                        "\nMessage :" +
+                        "\n" + message +
+                        "\n\n"
+        );
 
+        //database
         AppData.database.executeUpdate("Start Transaction;");
         AppData.database.executeUpdate(
                 "insert into player_" + sender + "(" +
@@ -90,14 +109,5 @@ public class Main {
                         ");"
         );
         AppData.database.executeUpdate("commit;");
-
-        messagebox.appendText(
-                stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) +
-                        "\nFrom : " + sender +
-                        "\nTo : " + receiver +
-                        "\nMessage :" +
-                        "\n" + message +
-                        "\n"
-        );
     }
 }
