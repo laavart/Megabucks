@@ -4,6 +4,7 @@ import java.sql.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+import javafx.util.Pair;
 
 import citra.client.*;
 import citra.exception.*;
@@ -323,7 +324,7 @@ public class Database {
         return resultSet.next() ? resultSet.getString(1) : "";
     }
 
-    public Client getUser(String username, String token){
+    private Client getUser(String username, String token){
         try {
             if(validateWithToken(username, token)){
                 ResultSet resultSet = statement.executeQuery(
@@ -365,7 +366,7 @@ public class Database {
         return false;
     }
 
-    public int validateUser(String username, String token){
+    public Pair<Integer, Client> validateUser(String username, String token){
         try {
             int id = checkForUser(username);
 
@@ -374,14 +375,14 @@ public class Database {
                         "select rvID from revoke_master where rvID = "+id+";"
                 );
 
-                if(!resultSet.next() && validateWithToken(username, token)) return id;
+                if(!resultSet.next()) return new Pair<>(id, getUser(username,token));
             }
         } catch (SQLException e) {
             System.out.println("Validation Error!");
         }
 
         System.out.println("User not found!");
-        return -1;
+        return null;
     }
 
     public int addNewUser(Client client){

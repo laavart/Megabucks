@@ -1,5 +1,10 @@
 package com.psloba.megabucks;
 
+import java.io.IOException;
+import java.util.HashMap;
+import javafx.util.Pair;
+
+
 import citra.Client;
 import citra.Database;
 
@@ -7,18 +12,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.HashMap;
-
 public class AppData {
 
-    static Scene scene = null;
     static Stage stage = null;
-
-    static Database database = null;
-    static Client client = null;
-    static int clientID = -1;
-
+    static Scene currentScene = null;
 
     static HashMap<String, Scene> Scenes = new HashMap<>();
     static {
@@ -31,6 +28,9 @@ public class AppData {
             e.printStackTrace();
         }
     }
+
+    static Database database = null;
+    static Pair<Integer, Client> client = null;
 
     static HashMap<String, Integer> users = new HashMap<>();
 }

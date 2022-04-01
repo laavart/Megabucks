@@ -1,14 +1,15 @@
 package com.psloba.megabucks;
 
-import javafx.collections.FXCollections;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import javafx.util.Pair;
+
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
 
 public class Main {
 
@@ -52,7 +53,7 @@ public class Main {
 
         //scorebox
         resultSet = AppData.database.executeQuery("" +
-                "select * from player_data where id = " + AppData.clientID + ";"
+                "select * from player_data where id = " + AppData.client.getKey() + ";"
         );
         if(resultSet.next()) {
             int score = resultSet.getInt("score");
@@ -78,36 +79,53 @@ public class Main {
     @FXML
     private void onSend() throws SQLException {
 
-        int sender = AppData.clientID, receiver = AppData.users.get(recipients.getValue());
         LocalDateTime stamp = LocalDateTime.now();
-        String message = this.message.getText();
-        messagebox.appendText(
-                stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) +
-                        "\nFrom : " + sender +
-                        "\nTo : " + receiver +
-                        "\nMessage :" +
-                        "\n" + message +
-                        "\n\n"
-        );
 
-        //database
-        AppData.database.executeUpdate("Start Transaction;");
-        AppData.database.executeUpdate(
-                "insert into player_" + sender + "(" +
-                        stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
-                        sender + "," +
-                        receiver + "," +
-                        "'" + message + "'" +
-                        ");"
-        );
-        AppData.database.executeUpdate(
-                "insert into player_" + receiver + "(" +
-                        stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
-                        sender + "," +
-                        receiver + "," +
-                        "'" + message + "'" +
-                        ");"
-        );
-        AppData.database.executeUpdate("commit;");
+        if(AppData.users.containsKey(recipients.getValue())) {
+            Pair<Integer, String> receiver = new Pair<>(AppData.users.get(recipients.getValue()), recipients.getValue());
+            String message = this.message.getText();
+
+            messagebox.appendText(
+                    stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) +
+                            "\nFrom : " + AppData.client.getValue().user().name() +
+                            "\nTo : " + receiver.getValue() +
+                            "\nMessage :" +
+                            "\n" + message +
+                            "\n\n"
+            );
+
+            AppData.database.executeUpdate("Start Transaction;");
+            AppData.database.executeUpdate(
+                    "insert into player_" + AppData.client.getKey() + "(" +
+                            stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
+                            AppData.client.getKey() + "," +
+                            receiver.getKey() + "," +
+                            "'" + message + "'" +
+                            ");"
+            );
+            AppData.database.executeUpdate(
+                    "insert into player_" + receiver.getKey() + "(" +
+                            stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
+                            AppData.client.getKey() + "," +
+                            receiver.getKey() + "," +
+                            "'" + message + "'" +
+                            ");"
+            );
+            AppData.database.executeUpdate("commit;");
+        }
+        else {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle(stamp.toString());
+            alert.setContentText(recipients.getValue() + " does not exist!");
+            alert.show();
+        }
+    }
+
+    @FXML
+    private void onLogOut(){
+        AppData.users = null;
+        AppData.client = null;
+        AppData.stage.setScene(AppData.Scenes.get("login"));
     }
 }
