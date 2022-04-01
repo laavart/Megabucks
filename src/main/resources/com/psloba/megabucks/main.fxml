@@ -64,95 +64,93 @@
           </VBox>
       </left>
       <right>
-         <VBox alignment="CENTER" onKeyPressed="#whileTypingMessage" onKeyTyped="#whileTypingMessage" prefHeight="506.0" prefWidth="200.0">
-            <children>
-               <Label text="Info">
-                  <font>
+          <VBox alignment="CENTER" onKeyPressed="#whileTypingMessage" onKeyTyped="#whileTypingMessage" prefHeight="506.0" prefWidth="200.0">
+              <Label text="Info">
+                 <font>
                      <Font name="System Bold Italic" size="61.0" />
-                  </font>
-                  <VBox.margin>
+                 </font>
+                 <VBox.margin>
                      <Insets />
-                  </VBox.margin>
-               </Label>
-               <HBox alignment="CENTER">
-                  <children>
-                     <VBox>
-                        <children>
-                           <Label alignment="TOP_LEFT" text="Money:">
-                              <padding>
-                                 <Insets right="5.0" />
-                              </padding>
-                              <font>
-                                 <Font name="System Bold" size="18.0" />
-                              </font>
-                           </Label>
-                           <Label alignment="TOP_LEFT" text="Score:">
-                              <padding>
-                                 <Insets right="5.0" />
-                              </padding>
-                              <font>
-                                 <Font name="System Bold" size="18.0" />
-                              </font>
-                           </Label>
-                           <Label layoutX="20.0" layoutY="75.0" text="Profit:">
-                              <font>
-                                 <Font name="System Bold" size="18.0" />
-                              </font>
-                           </Label>
-                           <Label text="Luck:">
-                              <font>
-                                 <Font name="System Bold" size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                        <padding>
-                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                        </padding>
-                     </VBox>
-                     <VBox>
-                        <children>
-                           <Label fx:id="money" text="200">
-                              <padding>
-                                 <Insets left="5.0" />
-                              </padding>
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                           <Label fx:id="score" text="0">
-                              <padding>
-                                 <Insets left="5.0" />
-                              </padding>
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                           <Label fx:id="profit" layoutX="20.0" layoutY="75.0" text="5%">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                           <Label fx:id="luck" text="25%">
-                              <font>
-                                 <Font size="18.0" />
-                              </font>
-                           </Label>
-                        </children>
-                        <padding>
-                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                        </padding>
-                     </VBox>
-                  </children>
+                 </VBox.margin>
+              </Label>
+              <HBox alignment="CENTER">
                   <VBox.margin>
+                      <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+                  </VBox.margin>
+                  <VBox>
+                      <padding>
+                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                      </padding>
+                      <Label alignment="TOP_LEFT" text="Money:">
+                          <padding>
+                              <Insets right="5.0" />
+                          </padding>
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label alignment="TOP_LEFT" text="Score:">
+                          <padding>
+                              <Insets right="5.0" />
+                          </padding>
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label layoutX="20.0" layoutY="75.0" text="Profit:">
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label text="Luck:">
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
+                  </VBox>
+                  <VBox>
+                      <padding>
+                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                      </padding>
+                      <Label fx:id="money" text="200">
+                          <padding>
+                              <Insets left="5.0" />
+                          </padding>
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="score" text="0">
+                          <padding>
+                              <Insets left="5.0" />
+                          </padding>
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="profit" layoutX="20.0" layoutY="75.0" text="5%">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="luck" text="25%">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                  </VBox>
+              </HBox>
+              <TextArea fx:id="scorebox" editable="false" prefHeight="215.0" prefWidth="179.0">
+                 <VBox.margin>
+                     <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                 </VBox.margin>
+              </TextArea>
+              <Button mnemonicParsing="false" text="Clear Scoreboard">
+                 <VBox.margin>
                      <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
-                  </VBox.margin>
-               </HBox>
-               <TextArea fx:id="scorebox" editable="false" prefHeight="236.0" prefWidth="179.0">
-                  <VBox.margin>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                  </VBox.margin>
-               </TextArea>
-            </children></VBox>
+                 </VBox.margin>
+              </Button>
+          </VBox>
       </right>
       <center>
          <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
