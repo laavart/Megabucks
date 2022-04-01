@@ -145,7 +145,7 @@
                      <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
                  </VBox.margin>
               </TextArea>
-              <Button mnemonicParsing="false" text="Clear Scoreboard">
+              <Button mnemonicParsing="false" onAction="#onClear" text="Clear Scoreboard">
                  <VBox.margin>
                      <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
                  </VBox.margin>
@@ -165,7 +165,7 @@
                            <Insets right="5.0" />
                         </HBox.margin>
                      </Label>
-                     <Label text="User">
+                     <Label fx:id="name" text="Name">
                         <font>
                            <Font name="System Bold Italic" size="28.0" />
                         </font>

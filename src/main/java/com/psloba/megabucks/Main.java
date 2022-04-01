@@ -24,6 +24,8 @@ public class Main {
     public Label luck;
     public TextArea scorebox;
 
+    public Label name;
+
     @FXML
     private void initialize() throws SQLException {
 
@@ -67,6 +69,10 @@ public class Main {
                             "\n\n"
             );
         }
+
+        //name
+        String name = AppData.client.getValue().user().name().trim();
+        this.name.setText(name.substring(0,name.indexOf(' ')));
     }
 
     @FXML
@@ -120,6 +126,11 @@ public class Main {
             alert.setContentText(recipients.getValue() + " does not exist!");
             alert.show();
         }
+    }
+
+    @FXML
+    private void onClear(){
+        scorebox.setText("");
     }
 
     @FXML
