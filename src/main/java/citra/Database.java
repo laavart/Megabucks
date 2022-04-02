@@ -4,8 +4,9 @@ import java.sql.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
-import javafx.util.Pair;
 
+import citra.util.Source;
+import citra.util.Pair;
 import citra.client.*;
 import citra.exception.*;
 
@@ -600,7 +601,7 @@ public class Database {
                         "update user_address set " +
                                 "AddressLine1 = '" + client.address().address1() + "'," +
                                 "AddressLine2 = '" + client.address().address2() + "'," +
-                                "PostalCode = " + getPostalCode(client.address()) + " " +
+                                "Location = " + getPostalCode(client.address()) + " " +
                                 "where uID = " + id +
                                 ";"
                 );

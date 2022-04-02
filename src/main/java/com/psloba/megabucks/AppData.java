@@ -2,11 +2,11 @@ package com.psloba.megabucks;
 
 import java.io.IOException;
 import java.util.HashMap;
-import javafx.util.Pair;
 
 
 import citra.Client;
 import citra.Database;
+import citra.util.Pair;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

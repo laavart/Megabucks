@@ -3,7 +3,7 @@ package com.psloba.megabucks;
 import java.sql.SQLException;
 
 import citra.Database;
-import citra.Source;
+import citra.util.Source;
 import citra.exception.*;
 
 import javafx.stage.Stage;

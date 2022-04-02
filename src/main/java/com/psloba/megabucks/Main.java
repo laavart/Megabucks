@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.util.Pair;
+import citra.util.Pair;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
