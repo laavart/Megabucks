@@ -67,7 +67,7 @@
           <VBox alignment="CENTER" onKeyPressed="#whileTypingMessage" onKeyTyped="#whileTypingMessage" prefHeight="506.0" prefWidth="200.0">
               <Label text="Info">
                  <font>
-                     <Font name="System Bold Italic" size="61.0" />
+                     <Font name="System Bold Italic" size="54.0" />
                  </font>
                  <VBox.margin>
                      <Insets />
