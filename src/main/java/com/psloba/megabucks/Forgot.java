@@ -76,7 +76,7 @@ public class Forgot {
     }
 
     @FXML
-    private void onSubmit() {
+    private void onSubmit() throws IOException {
         boolean check = true;
         if(username.getText().equals("")) {
             username.setPromptText("FIELD EMPTY!");
@@ -107,12 +107,14 @@ public class Forgot {
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("MegaBucks");
                 alert.setContentText("Password Changed!");
+                alert.show();
+                AppData.stage.setScene(AppData.getScene("login"));
             } else {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("MegaBucks");
                 alert.setContentText("Unable to Change Password!");
+                alert.show();
             }
-            alert.show();
         }
     }
 }
