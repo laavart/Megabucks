@@ -29,7 +29,7 @@ public class Application extends javafx.application.Application {
         if(!AppData.database.searchTable("player_data")) {
             AppData.database.executeQuery(
                     "create table player_data(" +
-                            "id integer primary key," +
+                            "id int primary key," +
                             "score int," +
                             "money int" +
                             ");"

@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="596.0" prefWidth="787.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.psloba.megabucks.Main">
     <BorderPane layoutX="-21.0" prefHeight="596.0" prefWidth="683.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <top>
-            <HBox alignment="BOTTOM_CENTER" style="-fx-background-color: Gold;" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" style="-fx-background-color: Gold;" BorderPane.alignment="CENTER">
                 <effect>
                     <SepiaTone />
                 </effect>
@@ -36,37 +36,232 @@
             </HBox>
         </bottom>
       <left>
-         <VBox alignment="CENTER" prefHeight="506.0" prefWidth="200.0" BorderPane.alignment="TOP_CENTER">
-            <children>
-               <Label text="Messages">
-                  <font>
+          <VBox alignment="CENTER" prefHeight="506.0" prefWidth="200.0" BorderPane.alignment="TOP_CENTER">
+              <Label text="Messages">
+                 <font>
                      <Font name="Calibri Bold Italic" size="18.0" />
-                  </font>
-                  <VBox.margin>
+                 </font>
+                 <VBox.margin>
                      <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
-                  </VBox.margin>
-               </Label>
-               <TextArea fx:id="messagebox" prefHeight="273.0" prefWidth="179.0">
-                  <VBox.margin>
+                 </VBox.margin>
+              </Label>
+              <TextArea fx:id="messagebox" editable="false" prefHeight="273.0" prefWidth="179.0">
+                 <VBox.margin>
                      <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
-                  </VBox.margin>
-               </TextArea>
-               <ComboBox fx:id="recipients" prefHeight="26.0" prefWidth="181.0" promptText="Select Recipient's ID">
-                  <VBox.margin>
+                 </VBox.margin>
+              </TextArea>
+              <ComboBox fx:id="recipients" prefHeight="26.0" prefWidth="181.0" promptText="Select Recipient's ID">
+                 <VBox.margin>
                      <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
-                  </VBox.margin>
-               </ComboBox>
-               <TextArea fx:id="message" onKeyPressed="#whileTypingMessage" prefHeight="60.0" prefWidth="179.0" promptText="Type Your Message">
-                  <VBox.margin>
+                 </VBox.margin>
+              </ComboBox>
+              <TextArea fx:id="message" onKeyPressed="#whileTypingMessage" prefHeight="60.0" prefWidth="179.0" promptText="Type Your Message">
+                 <VBox.margin>
                      <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
-                  </VBox.margin>
-               </TextArea>
-               <Button fx:id="send" mnemonicParsing="false" text="Send" />
-            </children>
-         </VBox>
+                 </VBox.margin>
+              </TextArea>
+              <Button fx:id="send" mnemonicParsing="false" onAction="#onSend" prefHeight="26.0" prefWidth="88.0" text="Send" />
+          </VBox>
       </left>
       <right>
-         <VBox fx:id="message" onKeyPressed="#whileTypingMessage" onKeyTyped="#whileTypingMessage" prefHeight="506.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+          <VBox alignment="CENTER" onKeyPressed="#whileTypingMessage" onKeyTyped="#whileTypingMessage" prefHeight="506.0" prefWidth="200.0">
+              <Label text="Info">
+                 <font>
+                     <Font name="System Bold Italic" size="54.0" />
+                 </font>
+                 <VBox.margin>
+                     <Insets />
+                 </VBox.margin>
+              </Label>
+              <HBox alignment="CENTER">
+                  <VBox.margin>
+                      <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+                  </VBox.margin>
+                  <VBox>
+                      <padding>
+                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                      </padding>
+                      <Label alignment="TOP_LEFT" text="Money:">
+                          <padding>
+                              <Insets right="5.0" />
+                          </padding>
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label alignment="TOP_LEFT" text="Score:">
+                          <padding>
+                              <Insets right="5.0" />
+                          </padding>
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label layoutX="20.0" layoutY="75.0" text="Profit/Loss:">
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
+                      <Label text="Luck:">
+                          <font>
+                              <Font name="System Bold" size="18.0" />
+                          </font>
+                      </Label>
+                  </VBox>
+                  <VBox>
+                      <padding>
+                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                      </padding>
+                      <Label fx:id="money" text="200">
+                          <padding>
+                              <Insets left="5.0" />
+                          </padding>
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="score" text="0">
+                          <padding>
+                              <Insets left="5.0" />
+                          </padding>
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="profit" layoutX="20.0" layoutY="75.0" text="5%">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                      <Label fx:id="luck" text="25%">
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Label>
+                  </VBox>
+              </HBox>
+              <TextArea fx:id="scorebox" editable="false" prefHeight="215.0" prefWidth="179.0">
+                 <VBox.margin>
+                     <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                 </VBox.margin>
+              </TextArea>
+            <ButtonBar prefHeight="40.0">
+              <buttons>
+                    <Button mnemonicParsing="false" onAction="#onClear" prefHeight="12.0" text="Clear" />
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#onLogOut" prefHeight="12.0" text="Log Out">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
+              </buttons>
+               <VBox.margin>
+                  <Insets bottom="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+            </ButtonBar>
+          </VBox>
       </right>
+      <center>
+         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <Label text="Welcome">
+                  <font>
+                     <Font name="System Bold" size="28.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="2.5" left="10.0" right="10.0" top="10.0" />
+                  </VBox.margin>
+               </Label>
+               <Label fx:id="name" text="Name">
+                  <font>
+                     <Font name="System Bold Italic" size="28.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="2.5" />
+                  </VBox.margin>
+               </Label>
+               <ChoiceBox fx:id="difficulty" prefWidth="150.0" />
+               <BorderPane>
+                  <left>
+                     <VBox alignment="CENTER_LEFT" translateX="13.0" BorderPane.alignment="CENTER">
+                        <children>
+                           <Button fx:id="b5" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="5">
+                              <VBox.margin>
+                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              </VBox.margin></Button>
+                           <Button fx:id="b7" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="7">
+                              <VBox.margin>
+                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              </VBox.margin></Button>
+                        </children>
+                     </VBox>
+                  </left>
+                  <right>
+                     <VBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER">
+                        <children>
+                           <Button fx:id="b6" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="6" translateX="-13.0">
+                              <VBox.margin>
+                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              </VBox.margin></Button>
+                           <Button fx:id="b8" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="8" translateX="-13.0">
+                              <VBox.margin>
+                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              </VBox.margin></Button>
+                        </children>
+                     </VBox>
+                  </right>
+                  <top>
+                     <HBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+                        <children>
+                           <Button fx:id="b1" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="1">
+                              <HBox.margin>
+                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              </HBox.margin></Button>
+                           <Button fx:id="b2" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="2">
+                              <HBox.margin>
+                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              </HBox.margin></Button>
+                           <Button fx:id="b3" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="3">
+                              <HBox.margin>
+                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              </HBox.margin></Button>
+                           <Button fx:id="b4" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="4">
+                              <HBox.margin>
+                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              </HBox.margin></Button>
+                        </children>
+                     </HBox>
+                  </top>
+                  <bottom>
+                     <HBox alignment="BOTTOM_CENTER" BorderPane.alignment="CENTER">
+                        <children>
+                           <Button fx:id="b9" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="9">
+                              <HBox.margin>
+                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              </HBox.margin></Button>
+                           <Button fx:id="b10" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="10">
+                              <HBox.margin>
+                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              </HBox.margin></Button>
+                           <Button fx:id="b11" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="11">
+                              <HBox.margin>
+                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              </HBox.margin></Button>
+                           <Button fx:id="b12" disable="true" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="12">
+                              <HBox.margin>
+                                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              </HBox.margin></Button>
+                        </children>
+                     </HBox>
+                  </bottom>
+                  <center>
+                     <Button mnemonicParsing="false" onAction="#onStart" prefHeight="100.0" prefWidth="100.0" text="Start" BorderPane.alignment="CENTER" />
+                  </center>
+                  <VBox.margin>
+                     <Insets bottom="10.0" top="10.0" />
+                  </VBox.margin>
+               </BorderPane>
+            </children>
+         </VBox>
+      </center>
     </BorderPane>
 </AnchorPane>
