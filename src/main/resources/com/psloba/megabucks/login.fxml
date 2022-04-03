@@ -46,7 +46,7 @@
                                     <Font name="System Italic" size="12.0" />
                                  </font>
                               </TextField>
-                              <ToggleButton mnemonicParsing="false" onAction="#onShow" prefWidth="60.0" text="Show">
+                              <ToggleButton fx:id="show" mnemonicParsing="false" onAction="#onShow" prefWidth="60.0" text="Show">
                                  <HBox.margin>
                                     <Insets bottom="10.0" right="10.0" top="10.0" />
                                  </HBox.margin>
