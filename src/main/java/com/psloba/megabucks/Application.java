@@ -7,8 +7,6 @@ import citra.Database;
 import citra.util.Source;
 import citra.exception.*;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Application extends javafx.application.Application {
@@ -28,15 +26,13 @@ public class Application extends javafx.application.Application {
 
         launch();
 
-        assert AppData.database != null : "Database Connection Error in @main";
-        if(!AppData.database.searchTable("player_data")) {
-            AppData.database.executeQuery(
-                    "create table player_data(" +
-                            "id int primary key," +
-                            "score int," +
-                            "money int" +
-                            ");"
-            );
-        }
+        assert AppData.database != null : "Database Null in Application.main() -> AppData.database";
+        AppData.database.executeUpdate(
+                "create table player_data(" +
+                        "id int primary key," +
+                        "score int," +
+                        "money int" +
+                        ");"
+        );
     }
 }

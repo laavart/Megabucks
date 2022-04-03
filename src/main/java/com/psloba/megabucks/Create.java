@@ -149,7 +149,7 @@ public class Create {
     }
 
     @FXML
-    private void onSubmit() {
+    private void onSubmit() throws IOException {
         boolean check = true;
         if(name.getText().equals("")) {
             name.setPromptText("FIELD EMPTY!");
@@ -246,6 +246,8 @@ public class Create {
                 catch (SQLException e) {
                     e.printStackTrace();
                 }
+
+                AppData.getScene("login");
             }
             else {
                 alert = new Alert(Alert.AlertType.ERROR);
