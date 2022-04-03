@@ -449,7 +449,7 @@ public class Database {
                                 ");"
                 );
 
-                statement.executeUpdate("commit ;");
+                statement.executeUpdate("commit;");
 
                 System.out.println("User Registered!");
                 return id;
