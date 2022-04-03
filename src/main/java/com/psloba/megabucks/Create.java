@@ -1,5 +1,6 @@
 package com.psloba.megabucks;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -125,8 +126,8 @@ public class Create {
     }
 
     @FXML
-    private void onBack(){
-        AppData.stage.setScene(AppData.Scenes.get("login"));
+    private void onBack() throws IOException {
+        AppData.stage.setScene(AppData.getScene("login"));
     }
 
     @FXML

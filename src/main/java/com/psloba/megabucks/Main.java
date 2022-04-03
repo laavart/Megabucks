@@ -1,5 +1,6 @@
 package com.psloba.megabucks;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -40,14 +41,14 @@ public class Main {
         ResultSet resultSet = AppData.database.executeQuery("Select uID, username from user_master;");
         ArrayList<String> users = new ArrayList<>();
         while (resultSet.next()) {
-            AppData.users.put(resultSet.getString(1), resultSet.getInt(0));
+            AppData.users.put(resultSet.getString("username"), resultSet.getInt("uID"));
             users.add(resultSet.getString(1));
         }
         recipients.setItems(FXCollections.observableList(users));
         resultSet.close();
 
         //messagebox
-        resultSet = AppData.database.executeQuery("select * from player_data order by date_time;");
+        resultSet = AppData.database.executeQuery("select * from player_" + AppData.client.getKey() + " order by date_time;");
         while (resultSet.next()) {
             messagebox.appendText(
                     resultSet.getString("date_time") +
@@ -159,10 +160,10 @@ public class Main {
     }
 
     @FXML
-    private void onLogOut(){
+    private void onLogOut() throws IOException {
         AppData.users = null;
         AppData.client = null;
-        AppData.stage.setScene(AppData.Scenes.get("login"));
+        AppData.stage.setScene(AppData.getScene("login"));
     }
 
     @FXML

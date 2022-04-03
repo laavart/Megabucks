@@ -3,6 +3,8 @@ package com.psloba.megabucks;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.IOException;
+
 public class LogIn {
 
     public TextField username;
@@ -16,21 +18,21 @@ public class LogIn {
     }
 
     @FXML
-    private void onClickingForgot() {
-        AppData.stage.setScene(AppData.Scenes.get("forgot"));
+    private void onClickingForgot() throws IOException {
+        AppData.stage.setScene(AppData.getScene("forgot"));
     }
 
     @FXML
-    private void onClickingCreate() {
-        AppData.stage.setScene(AppData.Scenes.get("create"));
+    private void onClickingCreate() throws IOException {
+        AppData.stage.setScene(AppData.getScene("create"));
     }
 
     @FXML
-    private void onClickingLogIn() {
+    private void onClickingLogIn() throws IOException {
         assert AppData.database != null;
         AppData.client = AppData.database.validateUser(username.getText(), password.getText());
 
-        if(AppData.client.getKey() != -1) AppData.stage.setScene(AppData.Scenes.get("main"));
+        if(AppData.client.getKey() != -1) AppData.stage.setScene(AppData.getScene("main"));
         else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Invalid Details!");
