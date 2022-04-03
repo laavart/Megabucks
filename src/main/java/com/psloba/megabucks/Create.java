@@ -247,6 +247,8 @@ public class Create {
                     );
 
                     AppData.database.executeUpdate("commit;");
+
+                    alert.show();
                 }
                 catch (SQLException e) {
                     e.printStackTrace();
@@ -258,8 +260,8 @@ public class Create {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("MegaBucks");
                 alert.setContentText("Unable to Create Account!");
+                alert.show();
             }
-            alert.show();
         }
     }
 }
