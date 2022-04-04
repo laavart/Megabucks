@@ -3,6 +3,7 @@ package com.psloba.megabucks;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -71,7 +72,7 @@ public class Main {
             this.score.setText(String.valueOf(score));
             this.money.setText(String.valueOf(money));
             scorebox.appendText(
-                    LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) +
+                    Timestamp.valueOf(LocalDateTime.now()) +
                             "\nScore: : " + score +
                             "\nMoney: : " + money +
                             "\n\n"
@@ -80,10 +81,12 @@ public class Main {
 
         //name
         String name = AppData.client.getValue().user().name().trim();
-        this.name.setText(name.substring(0,name.indexOf(' ')));
+        int index = name.indexOf(' ');
+        if(index != -1) this.name.setText(name.substring(0, index));
 
         //difficulty
         difficulty.setItems(FXCollections.observableList(List.of("Easy", "Medium", "Hard")));
+        difficulty.setValue("Easy");
         difficulty.setOnAction(e -> onSelection());
 
         //b...
@@ -224,7 +227,7 @@ public class Main {
         }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        alert.setTitle(String.valueOf(Timestamp.valueOf(LocalDateTime.now())));
 
         int money = Integer.parseInt(this.money.getText());
         int score = Integer.parseInt(this.score.getText());
@@ -277,7 +280,7 @@ public class Main {
             );
             if(check) {
                 scorebox.appendText(
-                        LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) +
+                        Timestamp.valueOf(LocalDateTime.now()) +
                                 "\n" + alert.getContentText() +
                                 "\nScore: : " + score +
                                 "\nMoney: : " + money +
