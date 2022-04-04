@@ -37,19 +37,13 @@ public class Main {
     private void initialize() throws SQLException {
 
         //recipients
-        ResultSet resultSet = AppData.database.executeQuery("Select uID, username from user_master;");
-        ArrayList<String> users = new ArrayList<>();
-        while (resultSet.next()) {
-            int uID = resultSet.getInt("uID");
-            String username = resultSet.getString("username");
-            AppData.users.put(uID, username);
-            if(uID != AppData.client.key()) users.add(username);
-        }
+        AppData.users = AppData.database.getAllUsers();
+        List<String> users = new ArrayList<>(AppData.users.size());
+        for(var user : AppData.users.keySet()) users.add(AppData.users.get(user));
         recipients.setItems(FXCollections.observableList(users));
-        resultSet.close();
 
         //messagebox
-        resultSet = AppData.database.executeQuery("select * from player_" + AppData.client.key() + " order by date_time;");
+        ResultSet resultSet = AppData.database.executeQuery("select * from player_" + AppData.client.key() + " order by date_time;");
         while (resultSet.next()) {
             String sender = AppData.users.get(resultSet.getInt("sender"));
             String receiver = AppData.users.get(resultSet.getInt("receiver"));
