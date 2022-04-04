@@ -22,5 +22,5 @@ public class AppData {
 
     static Database database = null;
     static Pair<Integer, Client> client = null;
-    static HashMap<String, Integer> users = new HashMap<>();
+    static HashMap<Integer, String> users = new HashMap<>();
 }

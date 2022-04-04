@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import citra.util.Pair;
+import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -41,8 +41,10 @@ public class Main {
         ResultSet resultSet = AppData.database.executeQuery("Select uID, username from user_master;");
         ArrayList<String> users = new ArrayList<>();
         while (resultSet.next()) {
-            AppData.users.put(resultSet.getString("username"), resultSet.getInt("uID"));
-            users.add(resultSet.getString("username"));
+            int uID = resultSet.getInt("uID");
+            String username = resultSet.getString("username");
+            AppData.users.put(uID, username);
+            if(uID != AppData.client.key()) users.add(username);
         }
         recipients.setItems(FXCollections.observableList(users));
         resultSet.close();
@@ -50,10 +52,12 @@ public class Main {
         //messagebox
         resultSet = AppData.database.executeQuery("select * from player_" + AppData.client.key() + " order by date_time;");
         while (resultSet.next()) {
+            String sender = AppData.users.get(resultSet.getInt("sender"));
+            String receiver = AppData.users.get(resultSet.getInt("receiver"));
             messagebox.appendText(
                     resultSet.getString("date_time") +
-                            "\nFrom : " + resultSet.getString("sender") +
-                            "\nTo : " + resultSet.getString("receiver") +
+                            "\nFrom : " + (sender.equals(AppData.client.value().user().username()) ? "YOU" : sender) +
+                            "\nTo : " + (receiver.equals(AppData.client.value().user().username()) ? "YOU" : receiver) +
                             "\nMessage :" +
                             "\n" + resultSet.getString("message") +
                             "\n\n"
@@ -82,6 +86,7 @@ public class Main {
         String name = AppData.client.value().user().name().trim();
         int index = name.indexOf(' ');
         if(index != -1) this.name.setText(name.substring(0, index));
+        else this.name.setText(name);
 
         //difficulty
         difficulty.setItems(FXCollections.observableList(List.of("Easy", "Medium", "Hard")));
@@ -111,45 +116,59 @@ public class Main {
     }
 
     @FXML
-    private void onSend() throws SQLException {
+    private void onSend() {
 
         LocalDateTime stamp = LocalDateTime.now();
+        String username = recipients.getValue();
 
-        if(AppData.users.containsKey(recipients.getValue())) {
+        if(AppData.users.containsValue(username)) {
 
-            Pair<Integer, String> receiver = new Pair<>(AppData.users.get(recipients.getValue()), recipients.getValue());
+            int uID = -1;
+            for(var id : AppData.users.keySet()) if(Objects.equals(AppData.users.get(id), username)) {
+                uID = id;
+                break;
+            }
             String message = this.message.getText();
 
-            messagebox.appendText(
-                    stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) +
-                            "\nFrom : " + AppData.client.value().user().name() +
-                            "\nTo : " + receiver.value() +
-                            "\nMessage :" +
-                            "\n" + message +
-                            "\n\n"
-            );
+            try {
+                AppData.database.executeUpdate("Start Transaction;");
+                AppData.database.executeUpdate(
+                        "insert into player_" + AppData.client.key() + " value(" +
+                                "'" + stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "'," +
+                                AppData.client.key() + "," +
+                                uID + "," +
+                                "'" + message + "'" +
+                                ");"
+                );
+                AppData.database.executeUpdate(
+                        "insert into player_" + uID + " value(" +
+                                "'" + stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "'," +
+                                AppData.client.key() + "," +
+                                uID + "," +
+                                "'" + message + "'" +
+                                ");"
+                );
+                AppData.database.executeUpdate("commit;");
 
-            AppData.database.executeUpdate("Start Transaction;");
-            AppData.database.executeUpdate(
-                    "insert into player_" + AppData.client.key() + "(" +
-                            stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
-                            AppData.client.key() + "," +
-                            receiver.key() + "," +
-                            "'" + message + "'" +
-                            ");"
-            );
-            AppData.database.executeUpdate(
-                    "insert into player_" + receiver.key() + "(" +
-                            stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
-                            AppData.client.key() + "," +
-                            receiver.key() + "," +
-                            "'" + message + "'" +
-                            ");"
-            );
-            AppData.database.executeUpdate("commit;");
+                messagebox.appendText(
+                        stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) +
+                                "\nFrom : YOU" +
+                                "\nTo : " + username +
+                                "\nMessage :" +
+                                "\n" + message +
+                                "\n\n"
+                );
+            }
+            catch (SQLException e) {
+                try {
+                    AppData.database.executeUpdate("rollback;");
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+                e.printStackTrace();
+            }
         }
         else {
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle(stamp.toString());
             alert.setContentText(recipients.getValue() + " does not exist!");
