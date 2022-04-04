@@ -278,6 +278,8 @@ public class Main {
                     score -= 20;
                 }
             }
+            money = Math.max(money, 200);
+            score = Math.max(score, 0);
             alert.setContentText("You Lose!");
         }
         else{
@@ -287,9 +289,10 @@ public class Main {
 
         try {
             boolean check = AppData.database.executeUpdate(
-                    "update player_data where id = " + AppData.client.key() + "set " +
+                    "update player_data set " +
                             "money = " + money + "," +
-                            "score = " + score +
+                            "score = " + score + " " +
+                            "where id = " + AppData.client.key() +
                             ";"
             );
             if(check) {
