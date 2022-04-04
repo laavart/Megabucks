@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
 import citra.util.Pair;
 
 import javafx.collections.FXCollections;
@@ -43,13 +42,13 @@ public class Main {
         ArrayList<String> users = new ArrayList<>();
         while (resultSet.next()) {
             AppData.users.put(resultSet.getString("username"), resultSet.getInt("uID"));
-            users.add(resultSet.getString(1));
+            users.add(resultSet.getString("username"));
         }
         recipients.setItems(FXCollections.observableList(users));
         resultSet.close();
 
         //messagebox
-        resultSet = AppData.database.executeQuery("select * from player_" + AppData.client.getKey() + " order by date_time;");
+        resultSet = AppData.database.executeQuery("select * from player_" + AppData.client.key() + " order by date_time;");
         while (resultSet.next()) {
             messagebox.appendText(
                     resultSet.getString("date_time") +
@@ -64,7 +63,7 @@ public class Main {
 
         //scorebox
         resultSet = AppData.database.executeQuery("" +
-                "select * from player_data where id = " + AppData.client.getKey() + ";"
+                "select * from player_data where id = " + AppData.client.key() + ";"
         );
         if(resultSet.next()) {
             int score = resultSet.getInt("score");
@@ -80,7 +79,7 @@ public class Main {
         }
 
         //name
-        String name = AppData.client.getValue().user().name().trim();
+        String name = AppData.client.value().user().name().trim();
         int index = name.indexOf(' ');
         if(index != -1) this.name.setText(name.substring(0, index));
 
@@ -117,13 +116,14 @@ public class Main {
         LocalDateTime stamp = LocalDateTime.now();
 
         if(AppData.users.containsKey(recipients.getValue())) {
+
             Pair<Integer, String> receiver = new Pair<>(AppData.users.get(recipients.getValue()), recipients.getValue());
             String message = this.message.getText();
 
             messagebox.appendText(
                     stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) +
-                            "\nFrom : " + AppData.client.getValue().user().name() +
-                            "\nTo : " + receiver.getValue() +
+                            "\nFrom : " + AppData.client.value().user().name() +
+                            "\nTo : " + receiver.value() +
                             "\nMessage :" +
                             "\n" + message +
                             "\n\n"
@@ -131,18 +131,18 @@ public class Main {
 
             AppData.database.executeUpdate("Start Transaction;");
             AppData.database.executeUpdate(
-                    "insert into player_" + AppData.client.getKey() + "(" +
+                    "insert into player_" + AppData.client.key() + "(" +
                             stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
-                            AppData.client.getKey() + "," +
-                            receiver.getKey() + "," +
+                            AppData.client.key() + "," +
+                            receiver.key() + "," +
                             "'" + message + "'" +
                             ");"
             );
             AppData.database.executeUpdate(
-                    "insert into player_" + receiver.getKey() + "(" +
+                    "insert into player_" + receiver.key() + "(" +
                             stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "," +
-                            AppData.client.getKey() + "," +
-                            receiver.getKey() + "," +
+                            AppData.client.key() + "," +
+                            receiver.key() + "," +
                             "'" + message + "'" +
                             ");"
             );
@@ -273,7 +273,7 @@ public class Main {
 
         try {
             boolean check = AppData.database.executeUpdate(
-                    "update player_data where id = " + AppData.client.getKey() + "set " +
+                    "update player_data where id = " + AppData.client.key() + "set " +
                             "money = " + money + "," +
                             "score = " + score +
                             ";"
