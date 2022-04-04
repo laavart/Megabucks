@@ -25,7 +25,7 @@ public class Main {
 
     public Label money;
     public Label score;
-    public Label profit;
+    public Label gp;
     public Label luck;
     public TextArea scorebox;
 
@@ -203,7 +203,7 @@ public class Main {
                 b10.setDisable(true);
                 b11.setDisable(true);
                 b12.setDisable(true);
-                profit.setText("5%");
+                gp.setText("5%");
                 luck.setText("25%");
             }
             case "Medium" -> {
@@ -215,7 +215,7 @@ public class Main {
                 b10.setDisable(true);
                 b11.setDisable(true);
                 b12.setDisable(true);
-                profit.setText("15%");
+                gp.setText("15%");
                 luck.setText("12.5%");
             }
             case "Hard" -> {
@@ -227,7 +227,7 @@ public class Main {
                 b10.setDisable(false);
                 b11.setDisable(false);
                 b12.setDisable(false);
-                profit.setText("25%");
+                gp.setText("25%");
                 luck.setText("8.33%");
             }
             default -> {
@@ -306,6 +306,8 @@ public class Main {
                                 "\nMoney: : " + money +
                                 "\n\n"
                 );
+                this.score.setText(String.valueOf(score));
+                this.money.setText(String.valueOf(money));
             }
             else {
                 alert.setAlertType(Alert.AlertType.ERROR);
