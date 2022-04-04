@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -75,7 +74,7 @@ public class Main {
             this.score.setText(String.valueOf(score));
             this.money.setText(String.valueOf(money));
             scorebox.appendText(
-                    Timestamp.valueOf(LocalDateTime.now()) +
+                    Timestamp.valueOf(LocalDateTime.now()).toString().substring(0,19) +
                             "\nScore: : " + score +
                             "\nMoney: : " + money +
                             "\n\n"
@@ -118,7 +117,7 @@ public class Main {
     @FXML
     private void onSend() {
 
-        LocalDateTime stamp = LocalDateTime.now();
+        String timestamp = Timestamp.valueOf(LocalDateTime.now()).toString().substring(0,19);
         String username = recipients.getValue();
 
         if(AppData.users.containsValue(username)) {
@@ -134,7 +133,7 @@ public class Main {
                 AppData.database.executeUpdate("Start Transaction;");
                 AppData.database.executeUpdate(
                         "insert into player_" + AppData.client.key() + " value(" +
-                                "'" + stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "'," +
+                                "'" + timestamp + "'," +
                                 AppData.client.key() + "," +
                                 uID + "," +
                                 "'" + message + "'" +
@@ -142,7 +141,7 @@ public class Main {
                 );
                 AppData.database.executeUpdate(
                         "insert into player_" + uID + " value(" +
-                                "'" + stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) + "'," +
+                                "'" + timestamp + "'," +
                                 AppData.client.key() + "," +
                                 uID + "," +
                                 "'" + message + "'" +
@@ -151,7 +150,7 @@ public class Main {
                 AppData.database.executeUpdate("commit;");
 
                 messagebox.appendText(
-                        stamp.format(DateTimeFormatter.ISO_LOCAL_DATE) +
+                        timestamp +
                                 "\nFrom : YOU" +
                                 "\nTo : " + username +
                                 "\nMessage :" +
@@ -170,7 +169,7 @@ public class Main {
         }
         else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle(stamp.toString());
+            alert.setTitle(timestamp);
             alert.setContentText(recipients.getValue() + " does not exist!");
             alert.show();
         }
@@ -246,7 +245,7 @@ public class Main {
         }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(String.valueOf(Timestamp.valueOf(LocalDateTime.now())));
+        alert.setTitle(Timestamp.valueOf(LocalDateTime.now()).toString().substring(0,19));
 
         int money = Integer.parseInt(this.money.getText());
         int score = Integer.parseInt(this.score.getText());
@@ -299,7 +298,7 @@ public class Main {
             );
             if(check) {
                 scorebox.appendText(
-                        Timestamp.valueOf(LocalDateTime.now()) +
+                        Timestamp.valueOf(LocalDateTime.now()).toString().substring(0,19) +
                                 "\n" + alert.getContentText() +
                                 "\nScore: : " + score +
                                 "\nMoney: : " + money +
