@@ -157,6 +157,8 @@ public class Main {
                                 "\n" + message +
                                 "\n\n"
                 );
+
+                this.message.setText("");
             }
             catch (SQLException e) {
                 try {
