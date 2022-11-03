@@ -43,7 +43,7 @@ public class Forgot {
     @FXML
     private void settingPassword(){
         String message = "Password Invalid!\n";
-        if(!Pattern.compile("^.*(?=.{8,128})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$").matcher(password.getText()).matches()) messagebox.appendText(message);
+        if(!Pattern.compile("^.*(?=.{8,128})(?=.+[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$").matcher(password.getText()).matches()) messagebox.appendText(message);
         else while(messagebox.getText().contains(message)){
             int i = messagebox.getText().indexOf(message);
             int j = i + message.length();
