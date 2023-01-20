@@ -69,8 +69,8 @@ public class Main {
             this.money.setText(String.valueOf(money));
             scorebox.appendText(
                     Timestamp.valueOf(LocalDateTime.now()).toString().substring(0,19) +
-                            "\nScore: : " + score +
-                            "\nMoney: : " + money +
+                            "\nScore: " + score +
+                            "\nMoney: " + money +
                             "\n\n"
             );
         }
@@ -299,8 +299,8 @@ public class Main {
                 scorebox.appendText(
                         Timestamp.valueOf(LocalDateTime.now()).toString().substring(0,19) +
                                 "\n" + alert.getContentText() +
-                                "\nScore: : " + score +
-                                "\nMoney: : " + money +
+                                "\nScore: " + score +
+                                "\nMoney: " + money +
                                 "\n\n"
                 );
                 this.score.setText(String.valueOf(score));
